@@ -24,21 +24,6 @@ class SplashActivity : BaseActivity() {
         setContentView(R.layout.activity_splash)
 
 
-//        if( sharedPreferences.getBoolean(IS_AUTHORISATION,false)){
-//            Handler().postDelayed({
-//
-//                val intent = Intent(this@SplashActivity, MainActivity::class.java)
-//                startActivity(intent,
-//                    ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-//            }, 1000)
-//        } else{
-//            Handler().postDelayed({
-//
-//                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
-//                startActivity(intent,
-//                    ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-//            }, 1000)
-//        }
 
 
 
