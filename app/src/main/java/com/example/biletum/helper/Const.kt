@@ -1,4 +1,4 @@
-package com.example.biletum.Helper
+package com.example.biletum.helper
 
 const val IS_AUTHORISATION = "is_authorisation"
 const val USER_KEY = "user_key"

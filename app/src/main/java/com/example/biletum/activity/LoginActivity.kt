@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.example.biletum.R
 import javax.inject.Inject
 
-class SplashActivity : BaseActivity() {
+class LoginActivity : BaseActivity() {
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -15,7 +15,7 @@ class SplashActivity : BaseActivity() {
 
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_splash)
+        setContentView(R.layout.activity_login)
 
 
 
