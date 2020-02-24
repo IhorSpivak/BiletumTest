@@ -3,7 +3,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.biletum.BuildConfig
 import com.example.biletum.api.BiletumAPI
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.GsonBuilder
+import com.ihsanbal.logging.LoggingInterceptor
 
 import dagger.Module
 import dagger.Provides
@@ -24,26 +26,26 @@ class ApplicationModule {
         const val URL = "https://api.kn0xx.com/"
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideOkHttpClient(): OkHttpClient {
-//        val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-//        val httpLoggingInterceptor = LoggingInterceptor.Builder()
-//            .loggable(BuildConfig.DEBUG)
-//            .setLevel(Level.BASIC)
-//            .log(Platform.INFO)
-//            .tag("NETWORK")
-//            .executor(Executors.newSingleThreadExecutor())
-//            .build()
-//        val stethoInterceptor = StethoInterceptor()
-//        okHttpClientBuilder.addInterceptor(httpLoggingInterceptor)
-//        okHttpClientBuilder.addNetworkInterceptor(stethoInterceptor)
-//
-//        okHttpClientBuilder.connectTimeout(10, TimeUnit.SECONDS)
-//            .writeTimeout(10, TimeUnit.SECONDS)
-//            .readTimeout(30, TimeUnit.SECONDS)
-//        return okHttpClientBuilder.build()
-//    }
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
+        val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
+        val httpLoggingInterceptor = LoggingInterceptor.Builder()
+            .loggable(BuildConfig.DEBUG)
+            .setLevel(com.ihsanbal.logging.Level.BASIC)
+            .log(Platform.INFO)
+            .tag("NETWORK")
+            .executor(Executors.newSingleThreadExecutor())
+            .build()
+        val stethoInterceptor = StethoInterceptor()
+        okHttpClientBuilder.addInterceptor(httpLoggingInterceptor)
+        okHttpClientBuilder.addNetworkInterceptor(stethoInterceptor)
+
+        okHttpClientBuilder.connectTimeout(10, TimeUnit.SECONDS)
+            .writeTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+        return okHttpClientBuilder.build()
+    }
 
     @Provides
     @Singleton

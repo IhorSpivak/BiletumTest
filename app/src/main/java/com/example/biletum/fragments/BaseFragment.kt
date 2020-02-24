@@ -54,12 +54,6 @@ abstract class BaseFragment(@LayoutRes layoutId: Int): Fragment(layoutId),Inject
         this.findNavController()
     }
 
-    protected open fun handleInsets(left: Int, top: Int, right: Int, bottom: Int) {
-        view?.apply {
-            updatePadding(left, top, right, bottom)
-        }
-    }
-
     private fun setupInsetListener(view: View) {
         ViewCompat.setOnApplyWindowInsetsListener(view) { _, insets ->
             val top = insets.systemWindowInsetTop
@@ -73,6 +67,16 @@ abstract class BaseFragment(@LayoutRes layoutId: Int): Fragment(layoutId),Inject
         }
         view.requestApplyInsets()
     }
+
+    protected open fun handleInsets(left: Int, top: Int, right: Int, bottom: Int) {
+        view?.apply {
+
+        }
+    }
+
+
+
+
 }
 
 

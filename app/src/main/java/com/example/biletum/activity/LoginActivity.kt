@@ -7,8 +7,6 @@ import javax.inject.Inject
 
 class LoginActivity : BaseActivity() {
 
-    @Inject
-    lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

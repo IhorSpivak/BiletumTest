@@ -3,17 +3,27 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_centerInParent="true"
+        android:id="@+id/name_text_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ed_phone"
-        android:layout_centerInParent="true"/>
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="номер телефона" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/btn_login"
-        android:layout_below="@+id/ed_phone"/>
+        android:layout_below="@+id/name_text_input"/>
 
 </RelativeLayout>
