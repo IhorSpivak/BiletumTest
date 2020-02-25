@@ -1,10 +1,10 @@
 package com.example.biletum.api
 
+import com.example.biletum.data.network.model.requests.events.EventAddRequest
+import com.example.biletum.data.network.model.responses.events.EventAddResponse
 import com.example.biletum.data.network.model.responses.login.LoginConfirmResponse
 import com.example.biletum.data.network.model.responses.login.LoginResponce
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface BiletumAPI {
 
@@ -23,5 +23,13 @@ interface BiletumAPI {
         @Field("code") code: String
 
     ): LoginConfirmResponse
+
+    @Headers("Content-Type: application/json")
+    @POST("/wallet/getUserWallets")
+    suspend fun addEvent(
+        @Header("Authorization") authorization:String,
+        @Body eventAddRequest : EventAddRequest
+    ): EventAddResponse
+
 
 }

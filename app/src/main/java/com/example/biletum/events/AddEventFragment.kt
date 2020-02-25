@@ -1,4 +1,5 @@
-package com.example.biletum.login
+package com.example.biletum.events
+
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -9,16 +10,17 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.example.biletum.R
 import com.example.biletum.activity.MainActivity
+import com.example.biletum.data.network.model.requests.events.EventAddRequest
 import com.example.biletum.fragments.BaseFragment
 import com.example.biletum.helper.USER_KEY
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
-class LoginFragment: BaseFragment(R.layout.fragment_login) {
+class AddEventFragment: BaseFragment(R.layout.fragment_add_event) {
 
 
-    private lateinit var viewModel: LoginViewModel
+    private lateinit var viewModel: EventsViewModel
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -29,31 +31,22 @@ class LoginFragment: BaseFragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        viewModel = getViewModel(LoginViewModel::class.java)
-        viewModel.loginData.observe(this, Observer {
-            when (it.confirmation_id != null) {
+        viewModel = getViewModel(EventsViewModel::class.java)
+        viewModel.addEventData.observe(this, Observer {
+            when (it.result) {
                 true -> {
-                    handleLoginSuccess(it.confirmation_id)
+                    handleAddEventSuccess()
                 }
                 false -> {
-                    handleNotLogin()
+                    handleNotAddEvent()
                 }
             }
 
-        })
-        viewModel.loginConfirmData.observe(this, Observer {
-            when (it.token != null) {
-                true -> {
-                    handleConfirmSuccess(it.token)
-                }
-                false -> {
-                    handleNotConfirm()
-                }
-            }
         })
 
         btn_login.setOnClickListener {
-            viewModel.login(ed_phone.text.toString())
+            var eventAddRequest : EventAddRequest(1,"test")
+            viewModel.addEvent(eventAddRequest)
         }
 
         btn_confirm.setOnClickListener {
@@ -75,16 +68,12 @@ class LoginFragment: BaseFragment(R.layout.fragment_login) {
     }
 
 
-    private fun handleNotLogin() {
+    private fun handleNotAddEvent() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    private fun handleLoginSuccess(confirmationId: String) {
-        this.confirmationId = confirmationId
-        ed_phone.text!!.clear()
-        ed_phone.hint = "Введите код подтверждения"
-        btn_confirm.visibility = View.VISIBLE
-        btn_login.visibility = View.GONE
+    private fun handleAddEventSuccess() {
+
 
     }
 

@@ -1,11 +1,14 @@
 package com.example.biletum.activity
 
+import android.app.ActivityOptions
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.biletum.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +27,19 @@ class MainActivity : AppCompatActivity() {
 
 
             })
+
+        btn_login.setOnClickListener {
+
+            val intent = Intent(this, LoginActivity::class.java)
+
+            startActivity(intent,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
+
+        btn_add_event.setOnClickListener {
+
+
+        }
 
     }
 }
