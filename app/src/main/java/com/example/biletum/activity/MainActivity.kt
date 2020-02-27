@@ -28,18 +28,6 @@ class MainActivity : AppCompatActivity() {
 
             })
 
-        btn_login.setOnClickListener {
-
-            val intent = Intent(this, LoginActivity::class.java)
-
-            startActivity(intent,
-                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-        }
-
-        btn_add_event.setOnClickListener {
-
-
-        }
 
     }
 }

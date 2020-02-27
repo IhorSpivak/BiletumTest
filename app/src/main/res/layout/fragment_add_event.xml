@@ -16,22 +16,16 @@
             android:id="@+id/ed_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="номер телефона" />
+            android:hint="Заголовок" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/btn_login"
+        android:text="Отправить"
+        android:id="@+id/btn_add_event"
         android:layout_below="@+id/name_text_input"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Потвердить"
-        android:id="@+id/btn_confirm"
-        android:visibility="gone"
-        android:layout_below="@+id/name_text_input"/>
+
 
 </RelativeLayout>

@@ -24,11 +24,11 @@ interface BiletumAPI {
 
     ): LoginConfirmResponse
 
-    @Headers("Content-Type: application/json")
-    @POST("/wallet/getUserWallets")
+    @Multipart
+    @PUT("/wallet/getUserWallets")
     suspend fun addEvent(
         @Header("Authorization") authorization:String,
-        @Body eventAddRequest : EventAddRequest
+        @Part eventAddRequest : EventAddRequest
     ): EventAddResponse
 
 
