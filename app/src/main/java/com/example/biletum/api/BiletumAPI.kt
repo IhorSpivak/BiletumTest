@@ -1,9 +1,11 @@
 package com.example.biletum.api
 
 import com.example.biletum.data.network.model.requests.events.EventAddRequest
+import com.example.biletum.data.network.model.responses.ProfileResponse
 import com.example.biletum.data.network.model.responses.events.EventAddResponse
 import com.example.biletum.data.network.model.responses.login.LoginConfirmResponse
 import com.example.biletum.data.network.model.responses.login.LoginResponce
+import retrofit2.Response
 import retrofit2.http.*
 
 interface BiletumAPI {
@@ -31,5 +33,10 @@ interface BiletumAPI {
         @Part eventAddRequest : EventAddRequest
     ): EventAddResponse
 
+    @Multipart
+    @PUT("/user/info")
+    suspend fun getUserProfile(
+        @Header("Authorization") authorization:String
+    ): Response<ProfileResponse>
 
 }

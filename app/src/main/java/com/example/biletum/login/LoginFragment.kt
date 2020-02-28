@@ -18,7 +18,7 @@ import javax.inject.Inject
 class LoginFragment: BaseFragment(R.layout.fragment_login) {
 
 
-    private lateinit var viewModel: LoginViewModel
+//    private lateinit var viewModel: LoginViewModel
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -29,36 +29,36 @@ class LoginFragment: BaseFragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        viewModel = getViewModel(LoginViewModel::class.java)
-        viewModel.loginData.observe(this, Observer {
-            when (it.confirmation_id != null) {
-                true -> {
-                    handleLoginSuccess(it.confirmation_id)
-                }
-                false -> {
-                    handleNotLogin()
-                }
-            }
-
-        })
-        viewModel.loginConfirmData.observe(this, Observer {
-            when (it.token != null) {
-                true -> {
-                    handleConfirmSuccess(it.token)
-                }
-                false -> {
-                    handleNotConfirm()
-                }
-            }
-        })
-
-        btn_login.setOnClickListener {
-            viewModel.login(ed_phone.text.toString())
-        }
-
-        btn_confirm.setOnClickListener {
-            viewModel.loginConfirm(confirmationId, ed_phone.text.toString())
-        }
+//        viewModel = getViewModel(LoginViewModel::class.java)
+//        viewModel.loginData.observe(this, Observer {
+//            when (it.confirmation_id != null) {
+//                true -> {
+//                    handleLoginSuccess(it.confirmation_id)
+//                }
+//                false -> {
+//                    handleNotLogin()
+//                }
+//            }
+//
+//        })
+//        viewModel.loginConfirmData.observe(this, Observer {
+//            when (it.token != null) {
+//                true -> {
+//                    handleConfirmSuccess(it.token)
+//                }
+//                false -> {
+//                    handleNotConfirm()
+//                }
+//            }
+//        })
+//
+//        btn_login.setOnClickListener {
+//            viewModel.login(ed_phone.text.toString())
+//        }
+//
+//        btn_confirm.setOnClickListener {
+//            viewModel.loginConfirm(confirmationId, ed_phone.text.toString())
+//        }
     }
 
     private fun handleNotConfirm() {

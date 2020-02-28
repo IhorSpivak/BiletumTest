@@ -3,9 +3,11 @@ package com.yaroslavtupalo.knocs.data
 import android.content.SharedPreferences
 import com.example.biletum.api.BiletumAPI
 import com.example.biletum.data.network.model.requests.events.EventAddRequest
+import com.example.biletum.data.network.model.responses.ProfileResponse
 import com.example.biletum.data.network.model.responses.events.EventAddResponse
 import com.example.biletum.data.network.model.responses.login.LoginConfirmResponse
 import com.example.biletum.data.network.model.responses.login.LoginResponce
+import retrofit2.Response
 
 import javax.inject.Inject
 
@@ -24,6 +26,13 @@ class DataRepository(private val apiService:BiletumAPI) {
 
     suspend fun addEvent(addRequest: EventAddRequest): EventAddResponse {
         val response =  apiService.addEvent("",addRequest)
+
+        return response
+
+    }
+
+    suspend fun getUserProfile(): Response<ProfileResponse> {
+        val response =  apiService.getUserProfile("")
 
         return response
 

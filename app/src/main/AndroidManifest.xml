@@ -17,11 +17,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
 
         <activity
             android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+        </activity>
+
+        <activity
+            android:name=".activity.ProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize">
         </activity>
@@ -37,13 +49,6 @@
             android:noHistory="true"
             android:screenOrientation="portrait"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
         </activity>
     </application>
 

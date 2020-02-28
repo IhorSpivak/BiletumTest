@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="113dp"
+    android:layout_marginEnd="20dp"
+    android:elevation="16dp"
+    app:elevation="16dp"
+    android:id="@+id/root"
+    android:layout_marginTop="16dp"
+    android:layout_marginStart="20dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="14dp"
+        android:id="@+id/ic_currency"
+        android:layout_marginTop="21dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="150dp"
+        android:singleLine="true"
+        android:text="РУстам"
+        android:fontFamily="sans-serif"
+        android:textAllCaps="true"
+        android:id="@+id/tv_name"
+        android:textSize="15sp"
+        android:textColor="#282828"
+        android:layout_toRightOf="@+id/ic_currency"
+
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="22dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="26 ноября "
+        android:id="@+id/tv_currency"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:layout_marginEnd="13dp"
+        android:textColor="#72E0BB"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="22dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_currency_value"
+        android:fontFamily="sans-serif-medium"
+        android:layout_toLeftOf="@+id/tv_currency"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:textColor="#3B3B3B"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="22dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ОЛОЛОЛО"
+        android:id="@+id/tv__fiat_value"
+        android:fontFamily="sans-serif-light"
+        android:layout_below="@+id/tv_currency"
+        android:layout_alignParentRight="true"
+        android:textAllCaps="true"
+        android:textSize="11sp"
+        android:layout_marginEnd="13dp"
+        android:textColor="#777777"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="11dp"
+        android:id="@+id/ic_history"
+        android:layout_marginTop="21dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/ic_history"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="21dp"
+        android:id="@+id/ic_qr"
+        />
+
+    <RelativeLayout
+        android:layout_width="50dp"
+        android:id="@+id/rl_more"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+
+            android:layout_marginStart="16dp"
+
+
+            android:id="@+id/ic_more"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>
