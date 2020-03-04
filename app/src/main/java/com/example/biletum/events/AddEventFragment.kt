@@ -46,7 +46,8 @@ class AddEventFragment: BaseFragment(R.layout.fragment_add_event) {
         })
 
         btn_add_event.setOnClickListener {
-            viewModel.addEvent(EventAddRequest("test","test","test","test","test","test",
+            viewModel.addEvent(sharedPreferences.getString(USER_KEY,"").toString(),
+                EventAddRequest("test","test","test","2020-04-01T15:45","2020-04-01T15:55","test",
                 "test","test","test","test","test","test"
             ))
         }
@@ -64,6 +65,7 @@ class AddEventFragment: BaseFragment(R.layout.fragment_add_event) {
 
         val snack = Snackbar.make(btn_login, Html.fromHtml("<font color=\"#F8941E\">Ивент успешно добавлен</font>"), Snackbar.LENGTH_LONG)
         snack.show()
+        activity!!.onBackPressed()
     }
 
 

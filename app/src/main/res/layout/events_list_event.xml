@@ -7,17 +7,21 @@
     android:layout_marginEnd="20dp"
     android:elevation="16dp"
     app:elevation="16dp"
+    android:background="@drawable/wallet_item_background"
     android:id="@+id/root"
     android:layout_marginTop="16dp"
     android:layout_marginStart="20dp">
 
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Title"
 
+        android:layout_marginTop="22dp"
         android:layout_marginStart="14dp"
-        android:id="@+id/ic_currency"
-        android:layout_marginTop="21dp"/>
+        android:id="@+id/ivent_name"
+        android:textSize="12sp"
+  />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,10 +34,10 @@
         android:id="@+id/tv_name"
         android:textSize="15sp"
         android:textColor="#282828"
-        android:layout_toRightOf="@+id/ic_currency"
+        android:layout_below="@+id/ivent_name"
 
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="22dp"/>
+        android:layout_marginStart="14dp"
+/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,78 +47,58 @@
         android:fontFamily="sans-serif-medium"
         android:textAllCaps="true"
         android:textSize="15sp"
+        android:layout_below="@+id/tv__fiat_value"
         android:layout_marginEnd="13dp"
         android:textColor="#72E0BB"
         android:layout_alignParentRight="true"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="22dp"/>
+      />
+
+
+    <TextView
+        android:id="@+id/tv__end_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="12dp"
+        android:layout_below="@+id/tv_currency"
+        android:fontFamily="sans-serif-light"
+        android:text="End date"
+        android:textColor="#777777"
+        android:textSize="12sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_currency_value"
+        android:text="26 ноября "
         android:fontFamily="sans-serif-medium"
-        android:layout_toLeftOf="@+id/tv_currency"
         android:textAllCaps="true"
         android:textSize="15sp"
-        android:textColor="#3B3B3B"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="22dp"/>
+        android:layout_below="@+id/tv__end_date"
+        android:layout_marginEnd="13dp"
+        android:textColor="#72E0BB"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/tv_date_end_value"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="5dp"
+        />
+
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ОЛОЛОЛО"
         android:id="@+id/tv__fiat_value"
-        android:fontFamily="sans-serif-light"
-        android:layout_below="@+id/tv_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:textAllCaps="true"
-        android:textSize="11sp"
+        android:layout_marginTop="22dp"
         android:layout_marginEnd="13dp"
+        android:layout_marginRight="12dp"
+
+        android:fontFamily="sans-serif-light"
+        android:text="Start date"
         android:textColor="#777777"
-        />
+        android:textSize="12sp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="11dp"
-        android:id="@+id/ic_history"
-        android:layout_marginTop="21dp"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/ic_history"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="21dp"
-        android:id="@+id/ic_qr"
-        />
-
-    <RelativeLayout
-        android:layout_width="50dp"
-        android:id="@+id/rl_more"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-
-        android:layout_height="50dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-
-            android:layout_marginStart="16dp"
-
-
-            android:id="@+id/ic_more"
-            />
-
-    </RelativeLayout>
 
 </RelativeLayout>

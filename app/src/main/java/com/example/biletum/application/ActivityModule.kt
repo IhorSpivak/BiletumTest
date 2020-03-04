@@ -1,9 +1,8 @@
 package com.example.biletum.application
 
 
-import com.example.biletum.activity.LoginActivity
-import com.example.biletum.activity.MainActivity
-import com.example.biletum.activity.SplashActivity
+import com.example.biletum.activity.*
+import com.example.biletum.profile.ProfileViewModel
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -13,6 +12,16 @@ interface ActivityModule {
 
     @ContributesAndroidInjector
     fun mainActivity(): MainActivity
+
+
+    @ContributesAndroidInjector
+    fun loginActivity(): LoginActivity
+
+    @ContributesAndroidInjector
+    fun addEventActivity(): AddEventActivity
+
+    @ContributesAndroidInjector
+    fun profileActivity(): ProfileActivity
 
 
 }

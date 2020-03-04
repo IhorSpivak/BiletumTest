@@ -3,9 +3,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.biletum.BuildConfig
 import com.example.biletum.api.BiletumAPI
+import com.example.biletum.data.DataRepository
+import com.example.biletum.data.local.db.mappers.UserEntityMapper
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.GsonBuilder
 import com.ihsanbal.logging.LoggingInterceptor
+
 
 import dagger.Module
 import dagger.Provides
@@ -23,7 +26,7 @@ class ApplicationModule {
 
     private companion object {
         const val preferences_key = "@preferences_key@"
-        const val URL = "https://api.kn0xx.com/"
+        const val URL = "https://dev.biletum.com:8900/"
     }
 
     @Provides
@@ -60,11 +63,11 @@ class ApplicationModule {
         return retrofit.create(BiletumAPI::class.java)
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideDataRepository(knoxxAPI: BiletumAPI,userEntityMapper: UserEntityMapper):DataRepository{
-//        return DataRepository(knoxxAPI,userEntityMapper)
-//    }
+    @Provides
+    @Singleton
+    fun provideDataRepository(knoxxAPI: BiletumAPI): DataRepository {
+        return DataRepository(knoxxAPI)
+    }
 
 
     @Provides

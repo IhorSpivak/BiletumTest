@@ -7,14 +7,15 @@ import com.example.biletum.data.network.model.responses.ProfileResponse
 import com.example.biletum.domain.ProfileIteractor
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import retrofit2.Retrofit
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 class ProfileViewModel @Inject constructor(private val profileIteractor: ProfileIteractor): BaseViewModel() {
 
 
-    private val _profileData = MutableLiveData<Response<ProfileResponse>>()
-    val profileData: LiveData<Response<ProfileResponse>>
+    private val _profileData = MutableLiveData<ProfileResponse>()
+    val profileData: LiveData<ProfileResponse>
         get() = _profileData
 
 

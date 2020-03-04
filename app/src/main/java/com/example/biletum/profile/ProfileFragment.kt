@@ -7,8 +7,7 @@ import androidx.lifecycle.Observer
 import com.example.biletum.R
 import com.example.biletum.data.network.model.responses.ProfileResponse
 import com.example.biletum.fragments.BaseFragment
-import com.example.biletum.helper.ErrorManager
-import retrofit2.Response
+import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
 class ProfileFragment: BaseFragment(R.layout.fragment_profile) {
@@ -27,28 +26,32 @@ class ProfileFragment: BaseFragment(R.layout.fragment_profile) {
 
         viewModel = getViewModel(ProfileViewModel::class.java)
         viewModel.profileData.observe(this, Observer {
-            when (it.code() == 200) {
+            when (it != null) {
                 true -> {
-                    handleProfileSuccess()
+                    handleProfileSuccess(it)
                 }
                 false -> {
-                    handleBadResponse(it)
+                    handleBadResponse()
                 }
             }
 
         })
 
-        viewModel.getProfile("")
+        viewModel.getProfile("00deda2a-096c-4afc-b335-81d6a19a415a")
 
 
 
     }
 
-    private fun handleBadResponse(it: Response<ProfileResponse>) {
-        context?.let { it1 -> ErrorManager.showError(it, it1) }
+    private fun handleBadResponse() {
+      
     }
 
-    private fun handleProfileSuccess() {
+    private fun handleProfileSuccess(it: ProfileResponse) {
+
+        ed_name.setText(it.first_name)
+        ed_mail.setText(it.email)
+        ed_phone.setText(it.phone)
 
     }
 

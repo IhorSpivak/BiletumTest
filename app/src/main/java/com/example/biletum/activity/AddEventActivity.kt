@@ -8,7 +8,7 @@ import com.example.biletum.R
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 
-class AddEventActivity : AppCompatActivity() {
+class AddEventActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

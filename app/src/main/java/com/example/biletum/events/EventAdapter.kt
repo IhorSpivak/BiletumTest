@@ -7,6 +7,7 @@ import com.example.biletum.R
 import com.example.biletum.application.AutoUpdatableAdapter
 import com.example.biletum.application.inflate
 import com.example.biletum.data.network.model.responses.events.EventItemResponse
+import kotlinx.android.synthetic.main.events_list_event.view.*
 import java.text.DecimalFormat
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -30,6 +31,8 @@ class EventAdapter @Inject constructor(): RecyclerView.Adapter<EventAdapter.MyNo
 
     override fun onBindViewHolder(holder: MyNotificationViewHolder, position: Int) {
         holder.bin(item = collection[position])
+
+
     }
 
     fun removeItem(position: Int) {
@@ -39,28 +42,17 @@ class EventAdapter @Inject constructor(): RecyclerView.Adapter<EventAdapter.MyNo
     inner class MyNotificationViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
         fun bin(item: EventItemResponse){
-//            itemView.tv_name.text = item.name
-//            itemView.tv_currency.text = item.currency
-//            if(item.balance != null) {
-//                val dollarBalance = item.balance!! * item.dollarRates!!
-//                DecimalFormat("##.##").format(dollarBalance).toString()
-//                itemView.tv__fiat_value.text =
-//                    "USD " + DecimalFormat("##.##").format(dollarBalance).toString()
-//            }
-//            itemView.tv_currency_value.text = item.balance.toString()
-//
-//
-//            itemView.ic_qr.setOnClickListener {
-//                onItemClickQR?.invoke(collection[adapterPosition])
-//            }
-//
-//            itemView.ic_history.setOnClickListener {
-//                onItemClickHistory?.invoke(collection[adapterPosition])
-//            }
-//
-//            itemView.rl_more.setOnClickListener {
-//                onItemClickMore?.invoke(collection[adapterPosition])
-//            }
+            itemView.tv_name.text = item.title
+            itemView.tv_currency.text = try {
+                    "${item.date_start?.replace(oldChar = 'T', newChar = ' ', ignoreCase = false)
+                        ?.replace(oldChar = 'Z', newChar = ' ', ignoreCase = false)}"
+                } catch (e: Exception){""}
+
+            itemView.tv_date_end_value.text = try {
+                "${item.date_end?.replace(oldChar = 'T', newChar = ' ', ignoreCase = false)
+                    ?.replace(oldChar = 'Z', newChar = ' ', ignoreCase = false)}"
+            } catch (e: Exception){""}
+
 //
 //            itemView.root.setOnClickListener {
 //                onItemClickRoot?.invoke(collection[adapterPosition])

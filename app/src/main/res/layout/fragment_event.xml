@@ -18,21 +18,20 @@
 
         />
 
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_centerInParent="true"
-        android:id="@+id/name_text_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Добавить Event"
+        android:background="#73FC79"
+        android:textColor="@color/mpm_white"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/btn_add_event"
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Имя" />
-    </com.google.android.material.textfield.TextInputLayout>
+    />
 
 
 
