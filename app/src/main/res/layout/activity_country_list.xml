@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.example.biletum.activity.CountryListActivity">
+
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:id="@+id/btn_back"
+        android:layout_height="60dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_arrow_back"
+        />
+</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/name_text_input"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:elevation="16dp"
+        android:background="@drawable/backgraund_country_field"
+        android:layout_below="@+id/btn_back"
+
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:id="@+id/ed_search"
+
+            android:hint="Search"
+            android:fontFamily="@font/sf_medium"
+            android:textColor="@color/black"
+            android:textColorHint="#4D000000"
+            android:textSize="15sp"
+            android:layout_marginStart="16dp"
+            android:singleLine="true"
+            >
+
+        </EditText>
+
+
+
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/name_text_input"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+      >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</RelativeLayout>

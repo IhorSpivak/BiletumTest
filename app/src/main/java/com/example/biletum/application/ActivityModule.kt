@@ -24,4 +24,8 @@ interface ActivityModule {
     fun profileActivity(): ProfileActivity
 
 
+    @ContributesAndroidInjector
+    fun countryListActivity(): CountryListActivity
+
+
 }

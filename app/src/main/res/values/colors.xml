@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#78E5B4</color>
     <color name="colorAccent">#78E5B4</color>
     <color name="white">#FFFFFF</color>
+    <color name="coral">#f26363</color>
+    <color name="focus_input">#4DD799</color>
 
 </resources>

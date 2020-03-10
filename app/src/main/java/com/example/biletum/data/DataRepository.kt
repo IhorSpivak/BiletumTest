@@ -52,7 +52,7 @@ class DataRepository(private val apiService:BiletumAPI) {
 
     }
 
-    suspend fun loginConfirm(confirmation_id:String, code:String): LoginConfirmResponse {
+    suspend fun loginConfirm(confirmation_id:String, code:String):Response<LoginConfirmResponse>{
         val loginConfirmResponse =  apiService.loginConfirm(confirmation_id =  confirmation_id, code = code)
 
 

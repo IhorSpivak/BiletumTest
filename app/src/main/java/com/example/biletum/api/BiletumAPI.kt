@@ -26,7 +26,7 @@ interface BiletumAPI {
         @Field("confirmation_id") confirmation_id: String,
         @Field("code") code: String
 
-    ): LoginConfirmResponse
+    ): Response<LoginConfirmResponse>
 
     @FormUrlEncoded
     @POST("/event")

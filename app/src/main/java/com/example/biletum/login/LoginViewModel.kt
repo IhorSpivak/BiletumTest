@@ -9,6 +9,7 @@ import com.example.biletum.domain.LoginConfirmIteractor
 
 import com.example.biletum.domain.LoginIteractor
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -19,9 +20,13 @@ class LoginViewModel @Inject constructor(private val loginInteractor: LoginItera
     val loginData: LiveData<LoginResponce>
         get() = _loginData
 
-    private val _loginConfirmData = MutableLiveData<LoginConfirmResponse>()
-    val loginConfirmData: LiveData<LoginConfirmResponse>
+    private val _loginConfirmData = MutableLiveData<Response<LoginConfirmResponse>>()
+    val loginConfirmData: LiveData<Response<LoginConfirmResponse>>
         get() = _loginConfirmData
+
+    private val _loginExeptionData = MutableLiveData<Throwable>()
+    val loginExeptionData: LiveData<Throwable>
+        get() = _loginExeptionData
 
 
 
@@ -46,7 +51,10 @@ class LoginViewModel @Inject constructor(private val loginInteractor: LoginItera
 
     override fun handleException(coroutineContext: CoroutineContext, throwable: Throwable) {
         super.handleException(coroutineContext, throwable)
-        //TODO handle exceptions, that thrown in  chain of requests, that calls in this ViewModel
+        uiScope.launch {
+            _loginExeptionData.value = throwable
+        }
+
     }
 
 }
