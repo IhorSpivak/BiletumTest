@@ -24,7 +24,8 @@ interface BiletumAPI {
     @POST("/login_confirm")
     suspend fun loginConfirm(
         @Field("confirmation_id") confirmation_id: String,
-        @Field("code") code: String
+        @Field("code") code: String,
+        @Field("platform") platform: String
 
     ): Response<LoginConfirmResponse>
 

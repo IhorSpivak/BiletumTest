@@ -40,9 +40,8 @@ class LoginViewModel @Inject constructor(private val loginInteractor: LoginItera
 
     fun loginConfirm(confirmation_id:String, code:String){
         uiScope.launch {
-            val loginConfirmData = loginConfirmIteractor.invoke(LoginConfirmIteractor.Params(confirmation_id,code))
-            _loginConfirmData.value = loginConfirmData
-        }
+            val loginConfirmData = loginConfirmIteractor.invoke(LoginConfirmIteractor.Params(confirmation_id,code, "android"))
+            }
     }
 
 

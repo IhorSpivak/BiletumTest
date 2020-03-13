@@ -1,16 +1,14 @@
-package com.example.biletum.events
+package com.example.biletum.events.event_add
 
 
-import android.app.ActivityOptions
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Html
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.biletum.R
-import com.example.biletum.activity.MainActivity
 import com.example.biletum.data.network.model.requests.events.EventAddRequest
+import com.example.biletum.events.EventsViewModel
 import com.example.biletum.fragments.BaseFragment
 import com.example.biletum.helper.USER_KEY
 import com.google.android.material.snackbar.Snackbar

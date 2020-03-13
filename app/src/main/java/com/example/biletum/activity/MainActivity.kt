@@ -27,9 +27,9 @@ class MainActivity : BaseActivity() {
 
 
             })
-
-        btn_profile.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
+//
+        btn_add_event.setOnClickListener {
+            val intent = Intent(this, AddEventActivity::class.java)
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 

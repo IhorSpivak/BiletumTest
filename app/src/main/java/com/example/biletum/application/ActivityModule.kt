@@ -27,5 +27,11 @@ interface ActivityModule {
     @ContributesAndroidInjector
     fun countryListActivity(): CountryListActivity
 
+    @ContributesAndroidInjector
+    fun filterEventsActivity(): EventsFilterActivity
+
+    @ContributesAndroidInjector
+    fun eventInfoActivity(): EventInfoActivity
+
 
 }

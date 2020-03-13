@@ -277,6 +277,22 @@
 
             android:layout_height="match_parent">
 
+            <com.agrawalsuneet.dotsloader.loaders.TashieLoader
+                android:layout_width="30dp"
+                android:layout_height="5dp"
+                app:tashieloader_animDelay="100"
+                app:tashieloader_animDur="300"
+                android:id="@+id/pb"
+android:layout_below="@+id/btn_confirm"
+                app:tashieloader_dotsColor="@color/colorAccent"
+                app:tashieloader_dotsDist="5dp"
+                android:visibility="gone"
+                app:tashieloader_dotsRadius="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_centerHorizontal="true"
+
+                app:tashieloader_interpolator="@android:anim/accelerate_interpolator"
+                app:tashieloader_noOfDots="6" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -514,6 +530,8 @@
 
                 android:id="@+id/btn_confirm"
                 android:layout_below="@+id/rl_check_box">
+
+
 
 
 

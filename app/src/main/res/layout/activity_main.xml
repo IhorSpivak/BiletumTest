@@ -7,38 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#A358D7"
-        android:fitsSystemWindows="true"
-        android:minHeight="?attr/actionBarSize">
+    <Button
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:gravity="center"
+        android:textSize="70sp"
+        android:background="@drawable/button_add_bg"
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center">
+        android:textColor="@color/mpm_white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_profile"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_profile"/>
+        android:layout_marginBottom="20dp"
+        android:id="@+id/btn_add_event"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Biletum"
-                android:textStyle="bold"
-                android:layout_marginStart="16dp"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-            android:layout_toRightOf="@+id/btn_profile" />
-
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
+        />
 
     <fragment
         android:id="@+id/host_for_splash_and_login"

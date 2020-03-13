@@ -47,38 +47,24 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
     private var  confirmCanWork: Boolean = false
     private var  clearCode: Boolean = false
     private var  userPhone: String = ""
-
+    private var  timer : CountDownTimer? = null
+    val CLEAR_TEXT = ""
 
 
     override fun onResume() {
         super.onResume()
-
+        hideKeyBoard()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        please(0) {
-            animate(card_confirm) toBe {
-                scale(scaleX = 0f, scaleY = 0f)
-            }
-        }.start()
-
-        please(duration = 0) {
-            animate(btn_back) toBe {
-                invisible()
-            }
-        }.start()
-
-        please(duration = 0) {
-            animate(card_confirm) toBe {
-                invisible()
-            }
-        }.start()
+        initAnimation()
+        hideKeyBoard()
 
         viewModel = getViewModel(LoginViewModel::class.java)
         viewModel.loginData.observe(this, Observer {
-            when (it.confirmation_id != null) {
+            when (it != null) {
                 true -> {
                     handleLoginSuccess(it.confirmation_id)
                 }
@@ -139,12 +125,9 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
                                 visible()
                             }
                         }.start()
-                        showTimer()
-                        val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-                        imm!!.hideSoftInputFromWindow(view.windowToken, 0)
+                        hideKeyBoard()
 
                     }
-
             }
 
             } else{
@@ -158,7 +141,6 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
             }
 
         }
-
         btn_confirm.setOnClickListener {
             if(ed_secret.length() < 4){
                 tv_alert_confirm_code.visibility = View.VISIBLE
@@ -166,26 +148,24 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
             } else{
                 if(cb.isChecked) {
                     viewModel.loginConfirm(confirmationId, ed_secret.getText().toString())
+                    pb.visibility = View.VISIBLE
                 } else{
                     tv_alert_cb_is_checked.visibility = View.VISIBLE
                     tv_alert_cb_is_checked.text = "Confirm that you are familiar with our rules"
                 }
             }
-
         }
         btn_resend_code.setOnClickListener {
                 viewModel.login(userPhone)
             showTimer()
             showSnackBarMessage("SMS c кодом отправлено")
-            ed_secret.setText("")
-
-
+            ed_secret.setText(CLEAR_TEXT)
         }
 
         btn_clear_field.setOnClickListener {
                 btn_clear_field.visibility = View.GONE
                 btn_list_countrys.visibility = View.VISIBLE
-                ed_phone.setText("")
+                ed_phone.setText(CLEAR_TEXT)
                 ed_phone.requestFocus()
                 tv_short_name.setTextColor(resources.getColor(com.example.biletum.R.color.colorPrimary))
                 tv_code.setTextColor(resources.getColor(R.color.black))
@@ -225,50 +205,36 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
                 }
             }.start()
 
-            ed_secret.setText("")
+            ed_secret.setText(CLEAR_TEXT)
             cb.isChecked = false
 
         }
 
-
-
-
         btn_list_countrys.setOnClickListener {
             val intent = Intent(activity, CountryListActivity::class.java)
             startActivityForResult(intent, 1)
-
         }
 
         tv_case_1.setOnClickListener {
             ed_secret.requestFocus()
-            val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-            imm!!.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-
+            showKeyboard()
         }
         tv_case_2.setOnClickListener {
             ed_secret.requestFocus()
-            val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-            imm!!.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-
+            showKeyboard()
         }
         tv_case_3.setOnClickListener {
             ed_secret.requestFocus()
-            val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-            imm!!.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-
+            showKeyboard()
         }
         tv_case_4.setOnClickListener {
             ed_secret.requestFocus()
-            val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-            imm!!.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-
+            showKeyboard()
         }
 
         cb.setOnCheckedChangeListener { buttonView, isChecked ->
             tv_alert_cb_is_checked.visibility = View.INVISIBLE
-
         }
-
 
         ed_phone.onFocusChangeListener = object : View.OnFocusChangeListener {
             override fun onFocusChange(view: View, hasFocus: Boolean) {
@@ -277,27 +243,20 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
                 } else {
                     name_text_input.setBackgroundResource(com.example.biletum.R.drawable.focus_bg_input)
                 }
-
             }
         }
 
-
-
         ed_phone.addTextChangedListener(object : TextWatcher {
-
             override fun afterTextChanged(s: Editable) {}
-
             override fun beforeTextChanged(
                 s: CharSequence, start: Int,
                 count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (s.isNotEmpty()) {
                     name_text_input.setBackgroundResource(com.example.biletum.R.drawable.focus_bg_input)
                     tv_alert.visibility = View.INVISIBLE
                     tv_short_name.setTextColor(resources.getColor(com.example.biletum.R.color.colorPrimary))
                     tv_code.setTextColor(resources.getColor(R.color.black))
-                } else{
 
                 }
             }
@@ -314,10 +273,10 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
               when (ed_secret.text.length){
                   0 -> {
-                      tv_case_1.text = ""
-                      tv_case_2.text = ""
-                      tv_case_3.text = ""
-                      tv_case_4.text = ""
+                      tv_case_1.text = CLEAR_TEXT
+                      tv_case_2.text = CLEAR_TEXT
+                      tv_case_3.text = CLEAR_TEXT
+                      tv_case_4.text = CLEAR_TEXT
                       tv_case_1.setBackgroundResource(com.example.biletum.R.drawable.bg_focus_tv_code_item)
                       tv_case_2.setBackgroundResource(com.example.biletum.R.drawable.backgraund_phone_field)
                       tv_case_3.setBackgroundResource(com.example.biletum.R.drawable.backgraund_phone_field)
@@ -326,9 +285,9 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
                   }
                   1 -> {
                       tv_case_1.text = s.substring(0)
-                      tv_case_2.text = ""
-                      tv_case_3.text = ""
-                      tv_case_4.text = ""
+                      tv_case_2.text = CLEAR_TEXT
+                      tv_case_3.text = CLEAR_TEXT
+                      tv_case_4.text = CLEAR_TEXT
                       tv_case_1.setBackgroundResource(com.example.biletum.R.drawable.bg_focus_tv_code_item)
                       tv_case_2.setBackgroundResource(com.example.biletum.R.drawable.backgraund_phone_field)
                       tv_case_3.setBackgroundResource(com.example.biletum.R.drawable.backgraund_phone_field)
@@ -337,8 +296,8 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
                   }
                   2 -> {
                       tv_case_2.text = s.substring(1)
-                      tv_case_3.text = ""
-                      tv_case_4.text = ""
+                      tv_case_3.text = CLEAR_TEXT
+                      tv_case_4.text = CLEAR_TEXT
                       tv_case_1.setBackgroundResource(com.example.biletum.R.drawable.bg_code_full)
                       tv_case_2.setBackgroundResource(com.example.biletum.R.drawable.bg_focus_tv_code_item)
                       tv_case_3.setBackgroundResource(com.example.biletum.R.drawable.backgraund_phone_field)
@@ -348,12 +307,12 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
                   3 -> {
                       if(clearCode){
 
-                         ed_secret.setText("")
+                         ed_secret.setText(CLEAR_TEXT)
                           clearCode = false
 
                       } else {
                           tv_case_3.text = s.substring(2)
-                          tv_case_4.text = ""
+                          tv_case_4.text = CLEAR_TEXT
                           tv_case_1.setBackgroundResource(com.example.biletum.R.drawable.bg_code_full)
                           tv_case_2.setBackgroundResource(com.example.biletum.R.drawable.bg_code_full)
                           tv_case_3.setBackgroundResource(com.example.biletum.R.drawable.bg_focus_tv_code_item)
@@ -374,10 +333,10 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
               }
                 when (ed_secret.getText().toString()){
                     "" -> {
-                        tv_case_1.text = ""
-                        tv_case_2.text = ""
-                        tv_case_3.text = ""
-                        tv_case_4.text = ""
+                        tv_case_1.text = CLEAR_TEXT
+                        tv_case_2.text = CLEAR_TEXT
+                        tv_case_3.text = CLEAR_TEXT
+                        tv_case_4.text = CLEAR_TEXT
                         tv_case_1.setBackgroundResource(com.example.biletum.R.drawable.bg_focus_tv_code_item)
                         tv_case_2.setBackgroundResource(com.example.biletum.R.drawable.backgraund_phone_field)
                         tv_case_3.setBackgroundResource(com.example.biletum.R.drawable.backgraund_phone_field)
@@ -387,6 +346,32 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
 
             }
         })
+    }
+
+    private fun hideKeyBoard() {
+        val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.hideSoftInputFromWindow(view!!.windowToken, 0)
+
+    }
+
+    private fun initAnimation() {
+        please(0) {
+            animate(card_confirm) toBe {
+                scale(scaleX = 0f, scaleY = 0f)
+            }
+        }.start()
+
+        please(duration = 0) {
+            animate(btn_back) toBe {
+                invisible()
+            }
+        }.start()
+
+        please(duration = 0) {
+            animate(card_confirm) toBe {
+                invisible()
+            }
+        }.start()
     }
 
     private fun handleExeptionData(it: Response<LoginConfirmResponse>) {
@@ -404,6 +389,12 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
 
                 }
                 505 ->{
+                    pb.visibility = View.GONE
+                    showSnackBarMessage("Internal server Error")
+                }
+
+                401 ->{
+                    pb.visibility = View.GONE
                     showSnackBarMessage("Internal server Error")
                 }
             }
@@ -412,13 +403,14 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
     private fun showTimer() {
         tv_timer.visibility = View.VISIBLE
         btn_resend_code.visibility = View.GONE
-        object : CountDownTimer(20000, 1000) {
+        timer = object : CountDownTimer(20000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 tv_timer.text = """Resend code (available in ${millisUntilFinished / 1000} sec)"""
             }
             override fun onFinish() {
                 tv_timer.visibility = View.GONE
                 btn_resend_code.visibility = View.VISIBLE
+
             }
         }.start()
     }
@@ -434,7 +426,7 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
                 CoordinatorLayout.LayoutParams.MATCH_PARENT,
                 CoordinatorLayout.LayoutParams.WRAP_CONTENT
             )
-            params.setMargins(60, 0, 60, 80)
+            params.setMargins(80, 0, 80, 80)
             params.gravity = Gravity.BOTTOM
             params.anchorGravity = Gravity.BOTTOM
 
@@ -450,21 +442,35 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
     }
 
     private fun handleConfirmSuccess(token: String) {
-        val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-        imm!!.hideSoftInputFromWindow(view!!.windowToken, 0)
+
+
         sharedPreferences.edit().putString(USER_KEY, token).apply()
 
-        val intent = Intent(activity, MainActivity::class.java)
-        startActivity(intent)
+        val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.hideSoftInputFromWindow(view!!.windowToken, 0)
 
-        val snack = Snackbar.make(btn_login, Html.fromHtml("<font color=\"#F8941E\">Вы авторизовались</font>"), Snackbar.LENGTH_LONG)
-        snack.show()
+        showSnackBarMessage("Вы авторизовались")
+
+        Handler().postDelayed(
+            {
+                onGoToMainScreen()
+            }, 2000)
+
+
+    }
+
+    private fun onGoToMainScreen() {
+        timer?.cancel()
+        val intent = Intent(activity, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        activity!!.finish()
+
     }
 
 
-
     private fun handleNotLogin() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        pb.visibility = View.GONE
     }
 
     private fun handleLoginSuccess(confirmationId: String) {
@@ -498,12 +504,11 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
             Html.fromHtml("<font color=\"#78E5B4\">Изминение сохранено</font>"),
             Snackbar.LENGTH_LONG
         ).apply {
-
             val params = CoordinatorLayout.LayoutParams(
                 CoordinatorLayout.LayoutParams.MATCH_PARENT,
                 CoordinatorLayout.LayoutParams.WRAP_CONTENT
             )
-            params.setMargins(60, 0, 60, 80)
+            params.setMargins(80, 0, 80, 80)
             params.gravity = Gravity.BOTTOM
             params.anchorGravity = Gravity.BOTTOM
 
@@ -512,6 +517,12 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
             show()
         }
     }
+
+    private fun showKeyboard() {
+        val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+    }
+
 
 
 

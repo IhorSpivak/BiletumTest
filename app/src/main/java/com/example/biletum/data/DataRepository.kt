@@ -21,7 +21,6 @@ class DataRepository(private val apiService:BiletumAPI) {
     lateinit var sharedPreferences: SharedPreferences
 
     suspend fun login(phone:String): LoginResponce {
-
        val loginResponse =  apiService.login(phone)
 
 
@@ -30,7 +29,6 @@ class DataRepository(private val apiService:BiletumAPI) {
     }
 
     suspend fun addEvent(token:String, addRequest: EventAddRequest): EventAddResponse {
-
         val response =  apiService.addEvent(token,addRequest.title, addRequest.date_start, addRequest.date_end )
 
         return response
@@ -38,7 +36,6 @@ class DataRepository(private val apiService:BiletumAPI) {
     }
 
     suspend fun getEvents(token:String): EventsListResponse{
-
         val response =  apiService.getEvents(token)
 
         return response
@@ -52,9 +49,8 @@ class DataRepository(private val apiService:BiletumAPI) {
 
     }
 
-    suspend fun loginConfirm(confirmation_id:String, code:String):Response<LoginConfirmResponse>{
-        val loginConfirmResponse =  apiService.loginConfirm(confirmation_id =  confirmation_id, code = code)
-
+    suspend fun loginConfirm(confirmation_id:String, code:String, platform:String):Response<LoginConfirmResponse>{
+        val loginConfirmResponse =  apiService.loginConfirm(confirmation_id =  confirmation_id, code = code,platform = platform)
 
         return loginConfirmResponse
 

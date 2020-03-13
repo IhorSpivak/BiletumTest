@@ -1,4 +1,4 @@
-package com.example.biletum.events
+package com.example.biletum.events.events_list
 
 
 import android.app.ActivityOptions
@@ -8,9 +8,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.biletum.R
-import com.example.biletum.activity.AddEventActivity
-import com.example.biletum.activity.MainActivity
+import com.example.biletum.activity.*
 import com.example.biletum.data.network.model.responses.events.EventItemResponse
+import com.example.biletum.events.EventsViewModel
 
 import com.example.biletum.fragments.BaseFragment
 import com.example.biletum.helper.USER_KEY
@@ -26,19 +26,19 @@ class EventsFragment : BaseFragment(R.layout.fragment_event){
     lateinit var sharedPreferences: SharedPreferences
 
     @Inject
-    lateinit var eventAdapter:EventAdapter
+    lateinit var eventAdapter: EventAdapter
 
 
     override fun onResume() {
         super.onResume()
         viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString())
 
+
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
 
         viewModel = getViewModel(EventsViewModel::class.java)
@@ -51,16 +51,31 @@ class EventsFragment : BaseFragment(R.layout.fragment_event){
                     handleNotEmptyList()
                 }
             }
-
         })
 
-        btn_add_event.setOnClickListener {
-            val intent = Intent(activity, AddEventActivity::class.java)
+        iv_profile.setOnClickListener {
+            val intent = Intent(activity, ProfileActivity::class.java)
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
+        }
+
+        btn_filter.setOnClickListener {
+            val intent = Intent(activity, EventsFilterActivity::class.java)
+            startActivityForResult(intent, 1)
         }
 
 
 
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            1 -> {
+
+
+                }
+
+            }
     }
 
     private fun handleNotEmptyList() {
@@ -73,6 +88,8 @@ class EventsFragment : BaseFragment(R.layout.fragment_event){
             adapter = eventAdapter
         }
     }
+
+
     
 
 }

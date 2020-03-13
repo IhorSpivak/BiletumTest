@@ -1,4 +1,4 @@
-package com.example.biletum.events
+package com.example.biletum.events.events_list
 
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +8,6 @@ import com.example.biletum.application.AutoUpdatableAdapter
 import com.example.biletum.application.inflate
 import com.example.biletum.data.network.model.responses.events.EventItemResponse
 import kotlinx.android.synthetic.main.events_list_event.view.*
-import java.text.DecimalFormat
 import javax.inject.Inject
 import kotlin.properties.Delegates
 

@@ -1,8 +1,8 @@
 package com.example.biletum.application
 
 
-import com.example.biletum.events.AddEventFragment
-import com.example.biletum.events.EventsFragment
+import com.example.biletum.events.event_add.AddEventFragment
+import com.example.biletum.events.events_list.EventsFragment
 import com.example.biletum.login.LoginFragment
 import com.example.biletum.profile.ProfileFragment
 import dagger.Module
@@ -20,7 +20,7 @@ interface FragmentsModule {
     fun loginFragment():LoginFragment
 
     @ContributesAndroidInjector
-    fun eventsFragment():EventsFragment
+    fun eventsFragment(): EventsFragment
 
     @ContributesAndroidInjector
     fun profileFragment():ProfileFragment

@@ -19,6 +19,13 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
 
         </activity>
 
@@ -27,17 +34,23 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
         </activity>
 
         <activity
             android:name=".activity.ProfileActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+        </activity>
+
+        <activity
+            android:name=".activity.EventsFilterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+        </activity>
+
+        <activity
+            android:name=".activity.EventInfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize">
         </activity>

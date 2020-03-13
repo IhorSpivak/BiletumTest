@@ -5,7 +5,7 @@
     tools:ignore="UnusedNavigation">
 
     <fragment android:id="@+id/add_event_dest"
-        android:name="com.example.biletum.events.AddEventFragment"
+        android:name="com.example.biletum.events.event_add.AddEventFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_add_event">
 

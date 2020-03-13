@@ -1,23 +1,20 @@
 package com.example.biletum.activity
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import com.example.biletum.R
 import com.example.biletum.data.network.model.responses.events.CountryItem
-import com.example.biletum.events.EventAdapter
 import com.example.biletum.login.CountryAdapter
 import kotlinx.android.synthetic.main.activity_country_list.*
-import kotlinx.android.synthetic.main.fragment_event.*
 
 import javax.inject.Inject
 
 
 import android.app.Activity
-import org.json.JSONObject
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 
 
 class CountryListActivity : BaseActivity() {
@@ -78,6 +75,8 @@ class CountryListActivity : BaseActivity() {
     }
 
     private fun onClickCountry(item: CountryItem) {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.hideSoftInputFromWindow(recycler_view.windowToken, 0)
         val intent = Intent()
         intent.putExtra("name", item.shortName)
         intent.putExtra("code", item.code)

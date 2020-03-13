@@ -12,10 +12,10 @@ class LoginConfirmIteractor @Inject constructor(private val dataRepository: Data
 
 
     override suspend fun invoke(executeParams: Params): Response<LoginConfirmResponse> {
-        return dataRepository.loginConfirm(executeParams.confirmation_id,executeParams.code)
+        return dataRepository.loginConfirm(executeParams.confirmation_id,executeParams.code, executeParams.platform)
 
     }
 
-    data class Params(val confirmation_id : String, val code: String)
+    data class Params(val confirmation_id : String, val code: String, val platform: String)
 
 }
