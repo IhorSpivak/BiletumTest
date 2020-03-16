@@ -19,13 +19,7 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.example.biletum.view.profile.events.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
 
         </activity>
 
@@ -73,6 +67,13 @@
             android:noHistory="true"
             android:screenOrientation="portrait"
             >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
     </application>
 
