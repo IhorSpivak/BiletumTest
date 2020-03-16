@@ -6,7 +6,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
     android:background="@color/white"
 android:fitsSystemWindows="true"
-tools:context=".activity.BaseActivity">
+tools:context=".view.profile.activity.BaseActivity">
 
 
 
@@ -201,7 +201,7 @@ tools:context=".activity.BaseActivity">
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#edf9ee"
+
             >
 
 
@@ -212,7 +212,6 @@ tools:context=".activity.BaseActivity">
             android:layout_height="match_parent"
 
             android:clipToPadding="true"
-            android:paddingBottom="80dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
             />

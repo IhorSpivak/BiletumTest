@@ -3,8 +3,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.biletum.BuildConfig
 import com.example.biletum.api.BiletumAPI
-import com.example.biletum.data.DataRepository
-import com.example.biletum.data.local.db.mappers.UserEntityMapper
+import com.example.biletum.repository.DataRepository
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.GsonBuilder
 import com.ihsanbal.logging.LoggingInterceptor
@@ -18,7 +17,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
-import java.util.logging.Level
 import javax.inject.Singleton
 
 @Module

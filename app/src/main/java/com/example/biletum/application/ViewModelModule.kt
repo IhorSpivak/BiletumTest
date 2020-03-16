@@ -2,10 +2,10 @@ package com.example.biletum.application
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.biletum.ViewModelFactory
-import com.example.biletum.events.EventsViewModel
-import com.example.biletum.login.LoginViewModel
-import com.example.biletum.profile.ProfileViewModel
+import com.example.biletum.view_models.ViewModelFactory
+import com.example.biletum.view_models.EventsViewModel
+import com.example.biletum.view_models.LoginViewModel
+import com.example.biletum.view_models.ProfileViewModel
 
 import dagger.Binds
 import dagger.Module

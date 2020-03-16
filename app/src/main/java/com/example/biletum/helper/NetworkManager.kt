@@ -1,10 +1,9 @@
 package com.example.biletum.helper
 
-import android.app.Activity
 import android.content.Context
 import android.widget.Toast
 import com.example.biletum.R
-import com.example.biletum.data.network.model.ErrorMessage
+import com.example.biletum.data.network.model.models.ErrorMessage
 import com.google.gson.Gson
 import retrofit2.Response
 import java.io.IOException

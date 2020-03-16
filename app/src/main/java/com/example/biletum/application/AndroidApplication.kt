@@ -34,7 +34,6 @@ class AndroidApplication : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
         AppInjector.init(this)
-
         sAnalytics = GoogleAnalytics.getInstance(this);
         initPrettyLogger()
 
