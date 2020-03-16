@@ -197,6 +197,13 @@ tools:context=".activity.BaseActivity">
         android:background="#F8F8F8"
         android:layout_height="match_parent">
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#edf9ee"
+            >
+
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -209,13 +216,23 @@ tools:context=".activity.BaseActivity">
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
             />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+        <com.agrawalsuneet.dotsloader.loaders.TashieLoader
+            android:layout_width="30dp"
+            android:layout_height="5dp"
+            app:tashieloader_animDelay="100"
+            app:tashieloader_animDur="300"
+            android:id="@+id/pb"
+            app:tashieloader_dotsColor="@color/colorAccent"
+            app:tashieloader_dotsDist="5dp"
+            android:visibility="visible"
+            app:tashieloader_dotsRadius="5dp"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
 
-
-
-
-
-
+            app:tashieloader_interpolator="@android:anim/accelerate_interpolator"
+            app:tashieloader_noOfDots="6" />
     </RelativeLayout>
 
 

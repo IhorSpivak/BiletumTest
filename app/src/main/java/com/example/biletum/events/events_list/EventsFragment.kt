@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.biletum.R
 import com.example.biletum.activity.*
 import com.example.biletum.data.network.model.responses.events.EventItemResponse
@@ -18,7 +19,8 @@ import com.example.biletum.helper.USER_KEY
 import kotlinx.android.synthetic.main.fragment_event.*
 import javax.inject.Inject
 
-class EventsFragment : BaseFragment(R.layout.fragment_event){
+class EventsFragment : BaseFragment(R.layout.fragment_event), SwipeRefreshLayout.OnRefreshListener{
+
 
     private lateinit var viewModel: EventsViewModel
 
@@ -40,7 +42,7 @@ class EventsFragment : BaseFragment(R.layout.fragment_event){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        progressBarShow(true)
         viewModel = getViewModel(EventsViewModel::class.java)
         viewModel.getListEventsData.observe(this, Observer {
             when (it.List.isNotEmpty()) {
@@ -48,10 +50,16 @@ class EventsFragment : BaseFragment(R.layout.fragment_event){
                     handleListEventSuccess(it.List)
                 }
                 false -> {
-                    handleNotEmptyList()
+                    handleEmptyList()
                 }
             }
         })
+
+        swipe_refresh_layout.setOnRefreshListener {
+            viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString())
+            rv_events_list.visibility = View.GONE
+
+        }
 
         iv_profile.setOnClickListener {
             val intent = Intent(activity, ProfileActivity::class.java)
@@ -68,6 +76,10 @@ class EventsFragment : BaseFragment(R.layout.fragment_event){
 
     }
 
+    override fun onRefresh() {
+      swipe_refresh_layout.isRefreshing = false
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             1 -> {
@@ -78,17 +90,31 @@ class EventsFragment : BaseFragment(R.layout.fragment_event){
             }
     }
 
-    private fun handleNotEmptyList() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun handleEmptyList() {
+
     }
 
     private fun handleListEventSuccess(data: List<EventItemResponse>) {
         rv_events_list?.apply {
             eventAdapter.collection = data
             adapter = eventAdapter
+            progressBarShow(false)
+            rv_events_list.visibility = View.VISIBLE
         }
     }
 
+
+    private fun progressBarShow(showProgress: Boolean) {
+      when(showProgress){
+          true -> {
+            pb.visibility = View.VISIBLE
+          }
+          false -> {
+              pb.visibility = View.GONE
+
+          }
+      }
+    }
 
     
 
