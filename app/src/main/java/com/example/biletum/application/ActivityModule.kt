@@ -8,6 +8,7 @@ import com.example.biletum.view.profile.events.filter.EventsFilterActivity
 import com.example.biletum.view.profile.login.CountryListActivity
 import com.example.biletum.view.profile.login.LoginActivity
 import com.example.biletum.view.profile.profile.ProfileActivity
+import com.example.biletum.view.profile.start_splash.SplashActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -37,6 +38,9 @@ interface ActivityModule {
 
     @ContributesAndroidInjector
     fun eventInfoActivity(): EventInfoActivity
+
+    @ContributesAndroidInjector
+    fun splashActivity(): SplashActivity
 
 
 }

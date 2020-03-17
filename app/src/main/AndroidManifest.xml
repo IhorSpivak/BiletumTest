@@ -29,6 +29,14 @@
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
         </activity>
 
         <activity
@@ -59,6 +67,7 @@
         <activity
             android:name="com.example.biletum.view.profile.events.event_add.AddEventActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize">
         </activity>
 
@@ -67,13 +76,7 @@
             android:noHistory="true"
             android:screenOrientation="portrait"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
         </activity>
     </application>
 

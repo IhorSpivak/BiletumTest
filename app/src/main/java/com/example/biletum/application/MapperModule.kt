@@ -1,7 +1,7 @@
 package com.yaroslavtupalo.knocs.application
 
 
-import com.example.biletum.data.local.db.mappers.UserEntityMapper
+
 import dagger.Module
 import dagger.Provides
 

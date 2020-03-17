@@ -3,7 +3,6 @@ package com.example.biletum.application
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import com.yaroslavtupalo.knocs.base.Injectable
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector

@@ -1,7 +1,7 @@
 package com.example.biletum.application
 
 
-import com.example.biletum.view.profile.events.event_add.AddEventFragment
+import com.example.biletum.view.profile.events.event_add.AddEventFragmentStep1
 import com.example.biletum.view.profile.events.events_list.EventsFragment
 import com.example.biletum.view.profile.login.LoginFragment
 import com.example.biletum.view.profile.profile.ProfileFragment
@@ -14,7 +14,7 @@ interface FragmentsModule {
 
 
     @ContributesAndroidInjector
-    fun addEventFragment(): AddEventFragment
+    fun addEventFragment(): AddEventFragmentStep1
 
     @ContributesAndroidInjector
     fun loginFragment():LoginFragment

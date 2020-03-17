@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,11 +7,46 @@
     android:layout_height="match_parent"
     tools:context=".view.profile.login.LoginActivity">
 
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:id="@+id/rl_topbar"
+       android:layout_marginBottom="20dp"
+       android:layout_height="wrap_content">
+
+       <com.kofigyan.stateprogressbar.StateProgressBar
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           app:spb_currentStateNumber="two"
+           app:spb_maxStateNumber="four"
+           android:id="@+id/step_bar"
+           app:spb_stateBackgroundColor="#BDBDBD"
+           app:spb_stateForegroundColor="@color/colorAccent"
+           app:spb_stateNumberBackgroundColor="#808080"
+           app:spb_stateNumberForegroundColor="#eeeeee"
+           app:spb_currentStateDescriptionColor="@color/colorAccent"
+           android:layout_below="@+id/tv_title"
+           android:layout_marginTop="20dp"
+           app:spb_stateDescriptionColor="#BDBDBD"
+           app:spb_animateToCurrentProgressState="true"
+           app:spb_checkStateCompleted="true"/>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_centerHorizontal="true"
+           android:layout_height="wrap_content"
+           android:id="@+id/tv_title"
+           android:layout_marginTop="20dp"
+           android:text="Create Event">
+
+       </TextView>
+</RelativeLayout>
+
     <fragment android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/host_for_splash_and_login"
         android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_below="@+id/rl_topbar"
         app:defaultNavHost="true"
         app:navGraph="@navigation/add_event_navigation" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

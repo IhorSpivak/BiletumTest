@@ -10,11 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.yaroslavtupalo.knocs.base.Injectable
+import com.example.biletum.application.Injectable
 import javax.inject.Inject
 
 
-abstract class BaseFragment(@LayoutRes layoutId: Int): Fragment(layoutId),Injectable {
+abstract class BaseFragment(@LayoutRes layoutId: Int): Fragment(layoutId), Injectable {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
