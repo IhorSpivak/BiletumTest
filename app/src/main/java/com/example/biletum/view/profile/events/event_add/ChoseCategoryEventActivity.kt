@@ -1,57 +1,50 @@
-package com.example.biletum.view.profile.login
-
-import android.content.Intent
-import android.content.SharedPreferences
-import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import com.example.biletum.data.network.model.models.CountryItem
-import kotlinx.android.synthetic.main.activity_list.*
-
-import javax.inject.Inject
-
+package com.example.biletum.view.profile.events.event_add
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
+import android.os.Bundle
+import android.os.Parcel
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
+import com.example.biletum.data.network.model.dto.CategoryDataItem
+import com.example.biletum.data.network.model.models.CategoryItem
+import com.example.biletum.data.network.model.models.TypeItem
 import com.example.biletum.view.profile.activity.BaseActivity
+import kotlinx.android.synthetic.main.activity_category_list.*
+import javax.inject.Inject
 
+class ChoseCategoryEventActivity : BaseActivity() {
 
-class CountryListActivity : BaseActivity() {
+    var dataList : CategoryDataItem? = null
 
-
-
-    val countryes = mutableListOf(
-        CountryItem("Ukraine", "+38", "UA", 1),
-        CountryItem(
-            "Russian Federation",
-            "+7",
-            "RU",
-            2
-        ),
-        CountryItem("Azerbaijan", "+994", "AZ", 3),
-        CountryItem("Wonder LAnd", "+38", "WL", 4)
-    )
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
     @Inject
-    lateinit var countryAdapter: CountryAdapter
+    lateinit var typesEventAdapter: CategoryEventAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
 
-        setContentView(com.example.biletum.R.layout.activity_list)
+        setContentView(com.example.biletum.R.layout.activity_category_list)
 
+        dataList = intent.getParcelableExtra<CategoryDataItem>("data")
 
         recycler_view?.apply {
-            countryAdapter.collection = countryes
-            adapter = countryAdapter
-            countryAdapter.onItemClick = { item -> onClickCountry(item) }
+            typesEventAdapter.collection = dataList!!.list
+            adapter = typesEventAdapter
         }
         btn_back.setOnClickListener {
-         onBackPressed()
+            onBackPressed()
+
+        }
+
+        btn_save.setOnClickListener {
+           onSaveCategotyesClick()
 
         }
 
@@ -71,8 +64,8 @@ class CountryListActivity : BaseActivity() {
     }
 
     fun filter(text: String) {
-        val temp = ArrayList<CountryItem>()
-        for (d in countryes) {
+        val temp = ArrayList<CategoryItem>()
+        for (d in dataList!!.list) {
             //or use .equal(text) with you want equal match
             //use .toLowerCase() for better matches
             if (d.name.toLowerCase().contains(text)) {
@@ -80,18 +73,15 @@ class CountryListActivity : BaseActivity() {
             }
         }
 
-        countryAdapter.updateList(temp)
+        typesEventAdapter.updateList(temp)
     }
 
-    private fun onClickCountry(item: CountryItem) {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-        imm!!.hideSoftInputFromWindow(recycler_view.windowToken, 0)
+    private fun onSaveCategotyesClick() {
+        val list : List<CategoryItem> = dataList!!.list
+        val categoryData = CategoryDataItem(list)
         val intent = Intent()
-        intent.putExtra("name", item.shortName)
-        intent.putExtra("code", item.code)
+        intent.putExtra("data", categoryData)
         setResult(Activity.RESULT_OK, intent)
         onBackPressed()
     }
-
-
 }

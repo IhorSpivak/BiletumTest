@@ -9,7 +9,7 @@ object DateHelper {
     val sdfFacebook = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
     val sdfVk = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
     val sdfServer = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    val sdfOrder = SimpleDateFormat("dd MMMM yyyy (HH:mm)", Locale.getDefault())
+    val sdfOrder = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
     val sdfOrder1 = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
     val sdfEditProfile = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
 

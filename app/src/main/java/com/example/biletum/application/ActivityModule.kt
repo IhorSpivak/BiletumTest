@@ -3,6 +3,9 @@ package com.example.biletum.application
 
 import com.example.biletum.view.profile.events.MainActivity
 import com.example.biletum.view.profile.events.event_add.AddEventActivity
+import com.example.biletum.view.profile.events.event_add.ChoseCategoryEventActivity
+import com.example.biletum.view.profile.events.event_add.ChoseLocationActivity
+import com.example.biletum.view.profile.events.event_add.ChoseTypeEventActivity
 import com.example.biletum.view.profile.events.event_info.EventInfoActivity
 import com.example.biletum.view.profile.events.filter.EventsFilterActivity
 import com.example.biletum.view.profile.login.CountryListActivity
@@ -41,6 +44,15 @@ interface ActivityModule {
 
     @ContributesAndroidInjector
     fun splashActivity(): SplashActivity
+
+    @ContributesAndroidInjector
+    fun choseLocationActivity(): ChoseLocationActivity
+
+    @ContributesAndroidInjector
+    fun choseTypeeventActivity(): ChoseTypeEventActivity
+
+    @ContributesAndroidInjector
+    fun choseCategoryEventActivity(): ChoseCategoryEventActivity
 
 
 }

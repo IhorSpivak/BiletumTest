@@ -1,42 +1,33 @@
-package com.example.biletum.view.profile.login
+package com.example.biletum.view.profile.events.event_add
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import com.example.biletum.data.network.model.models.CountryItem
+import android.view.inputmethod.InputMethodManager
+import com.example.biletum.data.network.model.models.TypeItem
+import com.example.biletum.view.profile.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_list.*
-
 import javax.inject.Inject
 
-
-import android.app.Activity
-import android.content.Context
-import android.view.inputmethod.InputMethodManager
-import com.example.biletum.view.profile.activity.BaseActivity
-
-
-class CountryListActivity : BaseActivity() {
-
+class ChoseTypeEventActivity : BaseActivity() {
 
 
     val countryes = mutableListOf(
-        CountryItem("Ukraine", "+38", "UA", 1),
-        CountryItem(
-            "Russian Federation",
-            "+7",
-            "RU",
-            2
-        ),
-        CountryItem("Azerbaijan", "+994", "AZ", 3),
-        CountryItem("Wonder LAnd", "+38", "WL", 4)
+        TypeItem("Concert", 1),
+        TypeItem("Congress", 2),
+        TypeItem("Seminar", 3),
+        TypeItem("Show", 4)
+
     )
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
     @Inject
-    lateinit var countryAdapter: CountryAdapter
+    lateinit var typesEventAdapter: TypesEventAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -46,12 +37,12 @@ class CountryListActivity : BaseActivity() {
 
 
         recycler_view?.apply {
-            countryAdapter.collection = countryes
-            adapter = countryAdapter
-            countryAdapter.onItemClick = { item -> onClickCountry(item) }
+            typesEventAdapter.collection = countryes
+            adapter = typesEventAdapter
+            typesEventAdapter.onItemClick = { item -> onTypeClick(item) }
         }
         btn_back.setOnClickListener {
-         onBackPressed()
+            onBackPressed()
 
         }
 
@@ -71,7 +62,7 @@ class CountryListActivity : BaseActivity() {
     }
 
     fun filter(text: String) {
-        val temp = ArrayList<CountryItem>()
+        val temp = ArrayList<TypeItem>()
         for (d in countryes) {
             //or use .equal(text) with you want equal match
             //use .toLowerCase() for better matches
@@ -80,18 +71,15 @@ class CountryListActivity : BaseActivity() {
             }
         }
 
-        countryAdapter.updateList(temp)
+        typesEventAdapter.updateList(temp)
     }
 
-    private fun onClickCountry(item: CountryItem) {
+    private fun onTypeClick(item: TypeItem) {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
         imm!!.hideSoftInputFromWindow(recycler_view.windowToken, 0)
         val intent = Intent()
-        intent.putExtra("name", item.shortName)
-        intent.putExtra("code", item.code)
+        intent.putExtra("name", item.name)
         setResult(Activity.RESULT_OK, intent)
         onBackPressed()
     }
-
-
 }

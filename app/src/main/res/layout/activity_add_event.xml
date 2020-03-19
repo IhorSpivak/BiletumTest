@@ -10,15 +10,31 @@
    <RelativeLayout
        android:layout_width="match_parent"
        android:id="@+id/rl_topbar"
-       android:layout_marginBottom="20dp"
+
+       android:background="@color/white"
        android:layout_height="wrap_content">
+
+       <RelativeLayout
+           android:layout_width="60dp"
+           android:id="@+id/btn_back"
+           android:layout_height="60dp">
+
+           <ImageView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_centerInParent="true"
+               android:src="@drawable/ic_arrow_back"
+               />
+       </RelativeLayout>
 
        <com.kofigyan.stateprogressbar.StateProgressBar
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           app:spb_currentStateNumber="two"
+           app:spb_currentStateNumber="one"
            app:spb_maxStateNumber="four"
            android:id="@+id/step_bar"
+           app:spb_stateTextSize="12sp"
+
            app:spb_stateBackgroundColor="#BDBDBD"
            app:spb_stateForegroundColor="@color/colorAccent"
            app:spb_stateNumberBackgroundColor="#808080"
@@ -35,18 +51,44 @@
            android:layout_centerHorizontal="true"
            android:layout_height="wrap_content"
            android:id="@+id/tv_title"
+           android:textAllCaps="true"
+           android:textSize="18sp"
+           android:textColor="@color/colorAccent"
+           android:layout_marginTop="10dp"
+           android:text="Create Event">
+
+       </TextView>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_marginStart="20dp"
+
+           android:layout_marginBottom="20dp"
+           android:layout_height="wrap_content"
+           android:id="@+id/tv_title_steps"
+           android:textColor="@color/colorAccent"
+           android:layout_below="@+id/step_bar"
            android:layout_marginTop="20dp"
            android:text="Create Event">
 
        </TextView>
 </RelativeLayout>
 
-    <fragment android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/host_for_splash_and_login"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
         android:layout_below="@+id/rl_topbar"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/add_event_navigation" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    </androidx.viewpager.widget.ViewPager>
+
+<!--    <fragment android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/host_for_splash_and_login"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:layout_below="@+id/rl_topbar"-->
+<!--        app:defaultNavHost="true"-->
+<!--        app:navGraph="@navigation/add_event_navigation" />-->
 
 </RelativeLayout>

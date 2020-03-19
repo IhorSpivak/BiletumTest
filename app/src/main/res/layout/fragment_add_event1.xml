@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    >
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    android:layout_height="match_parent">
+<LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
@@ -17,6 +34,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_name"
             android:layout_width="match_parent"
+            android:singleLine="true"
             android:layout_height="wrap_content"
 
             android:hint="Event name" />
@@ -28,6 +46,7 @@
         android:id="@+id/name_start_date_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
         android:layout_height="wrap_content"
         >
 
@@ -35,41 +54,52 @@
             android:id="@+id/ed_start_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:hint="Start date" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
 
         android:layout_centerInParent="true"
-        android:id="@+id/name_pass_input"
+        android:id="@+id/end_date_input"
+        android:layout_marginTop="16dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_pass"
+            android:id="@+id/ed_end_date"
             android:layout_width="match_parent"
+            android:singleLine="true"
             android:layout_height="wrap_content"
 
 
             android:hint="End date" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
 
         android:layout_centerInParent="true"
-        android:id="@+id/name_phone_input"
+        android:enabled="false"
+        android:clickable="true"
+        android:id="@+id/name_type_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
         android:layout_height="wrap_content"
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_phone"
+            android:id="@+id/ed_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location" />
+            android:drawableEnd="@drawable/ic_path"
+            android:paddingEnd="20dp"
+            android:singleLine="true"
+            android:hint="Event type" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
 
@@ -78,36 +108,97 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_marginTop="16dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_phone1"
+            android:id="@+id/ed_event_category"
             android:layout_width="match_parent"
+            android:drawableEnd="@drawable/ic_path"
+            android:singleLine="true"
+            android:paddingEnd="20dp"
             android:layout_height="wrap_content"
             android:hint="Event category" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+
     <com.google.android.material.textfield.TextInputLayout
 
         android:layout_centerInParent="true"
-        android:id="@+id/name_phone_input2"
+        android:layout_weight="1"
+        android:id="@+id/chose_country_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_height="wrap_content"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_country"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:hint="Country" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_centerInParent="true"
+            android:id="@+id/chose_city_input"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="City" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_centerInParent="true"
+        android:id="@+id/address_input"
+        android:layout_marginTop="16dp"
+        android:singleLine="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_phone2"
+            android:id="@+id/ed_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Event type" />
+
+
+            android:hint="Address" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Добавить"
+        android:text="Сontinue"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
         android:background="@color/colorAccent"
         android:layout_centerInParent="true"
         android:id="@+id/btn_add_event"
@@ -116,3 +207,6 @@
 
 
 </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.core.widget.NestedScrollView>

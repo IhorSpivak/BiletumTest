@@ -1,8 +1,13 @@
 package com.example.biletum.view.profile
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.text.Html
+import android.view.Gravity
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -11,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.biletum.application.Injectable
+import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 
@@ -68,6 +74,26 @@ abstract class BaseFragment(@LayoutRes layoutId: Int): Fragment(layoutId), Injec
     protected open fun handleInsets(left: Int, top: Int, right: Int, bottom: Int) {
         view?.apply {
 
+        }
+    }
+
+    fun showSnackBarIntentData(view: View, context: Context, data: Intent) {
+        Snackbar.make(
+            view,
+            Html.fromHtml("<font color=\"#78E5B4\">Изминение сохранено</font>"),
+            Snackbar.LENGTH_LONG
+        ).apply {
+            val params = CoordinatorLayout.LayoutParams(
+                CoordinatorLayout.LayoutParams.MATCH_PARENT,
+                CoordinatorLayout.LayoutParams.WRAP_CONTENT
+            )
+            params.setMargins(80, 0, 80, 80)
+            params.gravity = Gravity.BOTTOM
+            params.anchorGravity = Gravity.BOTTOM
+
+            view.layoutParams = params
+            view.background = context.resources.getDrawable(com.example.biletum.R.drawable.snackbar_background, null)
+            show()
         }
     }
 

@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.biletum.view.profile.events.MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
 
 
         </activity>
@@ -59,6 +60,27 @@
 
         <activity
             android:name="com.example.biletum.view.profile.login.CountryListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+        </activity>
+
+        <activity
+            android:name=".view.profile.events.event_add.ChoseLocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+        </activity>
+
+        <activity
+            android:name=".view.profile.events.event_add.ChoseTypeEventActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+        </activity>
+
+        <activity
+            android:name=".view.profile.events.event_add.ChoseCategoryEventActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize">
