@@ -8,7 +8,7 @@ import com.example.biletum.R
 import com.example.biletum.helper.IS_AUTHORISATION
 import com.example.biletum.view.profile.activity.BaseActivity
 import com.example.biletum.view.profile.login.LoginActivity
-import com.example.biletum.view.profile.events.MainActivity
+import com.example.biletum.view.profile.events.events_list.MainActivity
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity() {

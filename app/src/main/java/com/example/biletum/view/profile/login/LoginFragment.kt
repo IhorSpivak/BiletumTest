@@ -8,7 +8,7 @@ import android.text.Html
 import android.view.View
 import androidx.lifecycle.Observer
 
-import com.example.biletum.view.profile.events.MainActivity
+import com.example.biletum.view.profile.events.events_list.MainActivity
 import com.example.biletum.view.profile.BaseFragment
 import com.example.biletum.helper.USER_KEY
 import com.github.florent37.kotlin.pleaseanimate.please

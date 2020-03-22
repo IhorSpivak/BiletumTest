@@ -1,9 +1,7 @@
 package com.example.biletum.data.network.model.models
 
-
-data class CityItem(
+data class EventType(
     val name:String,
-    val state_id:Int,
-    val country_id:Int,
     val id:Int
+
 )

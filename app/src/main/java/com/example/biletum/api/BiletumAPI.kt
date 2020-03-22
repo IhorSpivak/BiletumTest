@@ -1,12 +1,12 @@
 package com.example.biletum.api
 
-import com.example.biletum.data.network.model.requests.events.EventAddRequest
-import com.example.biletum.data.network.model.requests.login.LoginRequest
 import com.example.biletum.data.network.model.responses.ProfileResponse
-import com.example.biletum.data.network.model.responses.events.EventAddResponse
-import com.example.biletum.data.network.model.responses.events.EventsListResponse
+import com.example.biletum.data.network.model.responses.events.*
+import com.example.biletum.data.network.model.responses.location.CityListResponse
+import com.example.biletum.data.network.model.responses.location.CountryResponse
 import com.example.biletum.data.network.model.responses.login.LoginConfirmResponse
 import com.example.biletum.data.network.model.responses.login.LoginResponce
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -26,7 +26,6 @@ interface BiletumAPI {
         @Field("confirmation_id") confirmation_id: String,
         @Field("code") code: String,
         @Field("platform") platform: String
-
     ): Response<LoginConfirmResponse>
 
     @FormUrlEncoded
@@ -36,15 +35,42 @@ interface BiletumAPI {
         @Field("title") title:String,
         @Field("date_start") date_start: String,
         @Field("date_end") date_end: String
-
     ): EventAddResponse
 
 
     @GET("/event/list")
     suspend fun getEvents(
         @Header("X-Token-Key") authorization:String
-
     ): EventsListResponse
+
+    @GET("/event_type/list")
+    suspend fun getEventTypeList(
+        @Header("X-Token-Key") authorization:String
+    ): EventTypeResponse
+
+    @GET("/category/list")
+    suspend fun getEventCategoryList(
+        @Header("X-Token-Key") authorization:String
+    ): EventCategoryResponse
+
+
+    @GET("/country/list")
+    suspend fun getCountryList(
+        @Header("X-Token-Key") authorization:String
+    ): CountryResponse
+
+    @GET("/city/list")
+    suspend fun getCityList(
+        @Header("X-Token-Key") authorization:String,
+        @Query("country_id ") id : Int
+    ): CityListResponse
+
+    @Multipart
+    @POST("/upload/file")
+    suspend fun uploadImage(
+        @Header("X-Token-Key") authorization:String,
+        @Part file: MultipartBody.Part
+    ):ImageUploadResponse
 
 
     @GET("/user/info")

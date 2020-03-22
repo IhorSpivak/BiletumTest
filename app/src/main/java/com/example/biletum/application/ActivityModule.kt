@@ -1,7 +1,7 @@
 package com.example.biletum.application
 
 
-import com.example.biletum.view.profile.events.MainActivity
+import com.example.biletum.view.profile.events.events_list.MainActivity
 import com.example.biletum.view.profile.events.event_add.AddEventActivity
 import com.example.biletum.view.profile.events.event_add.ChoseCategoryEventActivity
 import com.example.biletum.view.profile.events.event_add.ChoseLocationActivity

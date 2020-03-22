@@ -7,7 +7,7 @@ import android.media.RingtoneManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import com.example.biletum.view.profile.events.MainActivity
+import com.example.biletum.view.profile.events.events_list.MainActivity
 import com.google.firebase.messaging.RemoteMessage
 import com.google.firebase.messaging.FirebaseMessagingService
 

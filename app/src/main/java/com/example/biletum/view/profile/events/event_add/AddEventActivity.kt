@@ -38,15 +38,19 @@ class AddEventActivity : BaseActivity() {
                 when(position){
                     0 -> {
                         step_bar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE)
+                        tv_title_steps.text = "General Information"
                     }
                     1 -> {
                         step_bar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO)
+                        tv_title_steps.text = "Images"
                     }
                     2 -> {
                         step_bar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE)
+                        tv_title_steps.text = "Description"
                     }
                     3 -> {
                         step_bar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR)
+                        tv_title_steps.text = "Sell ticket"
                     }
 
                 }

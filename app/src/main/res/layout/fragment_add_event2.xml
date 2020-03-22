@@ -3,110 +3,117 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:background="@drawable/bg_header_image"
+       android:layout_marginStart="20dp"
+       android:layout_marginEnd="20dp"
+       android:layout_marginTop="20dp"
 
+       android:layout_height="200dp">
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:textColor="@color/black"
+           android:layout_centerInParent="true"
+           android:text="+ Add header image"
+           android:layout_height="wrap_content">
+
+       </TextView>
+   </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_centerInParent="true"
-        android:id="@+id/name_text_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:text="+ Add image from previous event"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:orientation="horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_height="160dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:hint="Имя" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_centerInParent="true"
-        android:id="@+id/name_mail_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:background="@drawable/bg_header_image"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginEnd="10dp"
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_mail"
+        android:layout_marginTop="20dp"
+
+        android:layout_height="130dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_centerInParent="true"
+            android:text="+"
+            android:layout_height="wrap_content">
+
+        </TextView>
+    </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Почта" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:background="@drawable/bg_header_image"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="130dp">
 
-    <com.google.android.material.textfield.TextInputLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_centerInParent="true"
+                android:text="+"
+                android:layout_height="wrap_content">
 
-        android:layout_centerInParent="true"
-        android:id="@+id/name_pass_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+            </TextView>
+        </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_pass"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="********"
-            android:inputType="textPassword"
-            android:hint="Пароль" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
+            android:background="@drawable/bg_header_image"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:layout_height="130dp">
 
-        android:layout_centerInParent="true"
-        android:id="@+id/name_phone_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Телефон" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_centerInParent="true"
+                android:text="+"
+                android:layout_height="wrap_content">
 
-    <com.google.android.material.textfield.TextInputLayout
+            </TextView>
+        </LinearLayout>
 
-        android:layout_centerInParent="true"
-        android:id="@+id/name_phone_input1"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_event_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Телефон" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_centerInParent="true"
-        android:id="@+id/name_phone_input2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_phone2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Телефон" />
-    </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Добавить"
+        android:text="Next step"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
         android:id="@+id/btn_add_event"
         android:layout_below="@+id/name_text_input"/>
 

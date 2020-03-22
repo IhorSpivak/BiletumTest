@@ -10,108 +10,34 @@
     <com.google.android.material.textfield.TextInputLayout
 
         android:layout_centerInParent="true"
-        android:id="@+id/name_text_input"
+        android:id="@+id/tickets_url_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_name"
+            android:id="@+id/ed_tickets_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:hint="Event name" />
+            android:hint="Tickets sale URL" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_centerInParent="true"
-        android:id="@+id/name_mail_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_mail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Start date" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_centerInParent="true"
-        android:id="@+id/name_pass_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_pass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-
-            android:hint="End date" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_centerInParent="true"
-        android:id="@+id/name_phone_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Location" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_centerInParent="true"
-        android:id="@+id/name_phone_input1"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_event_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Event category" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_centerInParent="true"
-        android:id="@+id/name_phone_input2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_phone2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Event type" />
-    </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Добавить"
+        android:text="Create Event"
         android:background="@color/colorAccent"
+        android:textColor="@color/white"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
         android:id="@+id/btn_add_event"
         android:layout_below="@+id/name_text_input"/>
 

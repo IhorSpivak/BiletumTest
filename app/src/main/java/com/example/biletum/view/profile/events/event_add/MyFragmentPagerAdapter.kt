@@ -25,12 +25,10 @@ class MyFragmentPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(ma
 
     override fun getItem(position: Int): Fragment {
         when (position) {
-            0 // Fragment # 0 - This will show FirstFragment
-            -> return AddEventFragmentStep1.newInstance()
-            1 // Fragment # 0 - This will show FirstFragment different title
-            -> return AddEventFragmentStep2.newInstance()
-            2 // Fragment # 1 - This will show SecondFragment
-            -> return AddEventFragmentStep3.newInstance()
+            0 -> return AddEventFragmentStep1.newInstance()
+            1 -> return AddEventFragmentStep2.newInstance()
+            2 -> return AddEventFragmentStep3.newInstance()
+            3 -> return AddEventFragmentStep4.newInstance()
             else -> return AddEventFragmentStep1.newInstance()
         }
     }

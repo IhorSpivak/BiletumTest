@@ -1,4 +1,4 @@
-package com.example.biletum.view.profile.events
+package com.example.biletum.view.profile.events.events_list
 
 import android.app.ActivityOptions
 import android.content.Intent
