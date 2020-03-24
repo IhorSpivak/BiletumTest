@@ -2,10 +2,7 @@ package com.example.biletum.application
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.biletum.view_models.ViewModelFactory
-import com.example.biletum.view_models.EventsViewModel
-import com.example.biletum.view_models.LoginViewModel
-import com.example.biletum.view_models.ProfileViewModel
+import com.example.biletum.view_models.*
 
 import dagger.Binds
 import dagger.Module
@@ -28,6 +25,16 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     abstract fun profileViewModel(viewModel: ProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LocationViewModel::class)
+    abstract fun locationViewModel(viewModel: LocationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EventShareViewModel::class)
+    abstract fun eventSharedViewModel(viewModel: EventShareViewModel): ViewModel
 
 
 

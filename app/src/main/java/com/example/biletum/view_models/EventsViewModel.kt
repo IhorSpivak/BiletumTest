@@ -2,7 +2,7 @@ package com.example.biletum.view_models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.biletum.data.network.model.requests.events.EventAddRequest
+import com.example.biletum.data.network.model.requests.events.AddEventRequest
 import com.example.biletum.data.network.model.responses.events.*
 import com.example.biletum.interactors.AddEventIteractor
 import com.example.biletum.interactors.CategoryEventInteractor
@@ -43,7 +43,7 @@ class EventsViewModel @Inject constructor(private val addEventInteractor: AddEve
         get() = _uploadImageData
 
 
-    fun addEvent(token: String, eventAddRequest: EventAddRequest){
+    fun addEvent(token: String, eventAddRequest: AddEventRequest){
         uiScope.launch {
             val addEventData = addEventInteractor.invoke(AddEventIteractor.Params("00deda2a-096c-4afc-b335-81d6a19a415a",eventAddRequest))
             _addEventData.value = addEventData

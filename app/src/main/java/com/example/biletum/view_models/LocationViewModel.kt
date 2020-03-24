@@ -2,13 +2,10 @@ package com.example.biletum.view_models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.biletum.data.network.model.requests.events.EventAddRequest
 import com.example.biletum.data.network.model.responses.location.CityListResponse
 import com.example.biletum.data.network.model.responses.location.CountryResponse
-import com.example.biletum.interactors.AddEventIteractor
 import com.example.biletum.interactors.CityListInteractor
 import com.example.biletum.interactors.CountryListInteractor
-import com.example.biletum.interactors.EventsListInteractor
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

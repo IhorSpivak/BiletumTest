@@ -6,6 +6,7 @@ import com.example.biletum.api.BiletumAPI
 import com.example.biletum.repository.DataRepository
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.GsonBuilder
+import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 
 
@@ -33,7 +34,8 @@ class ApplicationModule {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         val httpLoggingInterceptor = LoggingInterceptor.Builder()
             .loggable(BuildConfig.DEBUG)
-            .setLevel(com.ihsanbal.logging.Level.BASIC)
+
+            .setLevel(Level.BODY)
             .log(Platform.INFO)
             .tag("NETWORK")
             .executor(Executors.newSingleThreadExecutor())

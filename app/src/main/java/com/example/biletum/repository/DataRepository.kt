@@ -2,7 +2,7 @@ package  com.example.biletum.repository
 
 import android.content.SharedPreferences
 import com.example.biletum.api.BiletumAPI
-import com.example.biletum.data.network.model.requests.events.EventAddRequest
+import com.example.biletum.data.network.model.requests.events.AddEventRequest
 import com.example.biletum.data.network.model.responses.ProfileResponse
 import com.example.biletum.data.network.model.responses.events.*
 import com.example.biletum.data.network.model.responses.location.CityListResponse
@@ -27,7 +27,7 @@ class DataRepository(private val apiService:BiletumAPI) {
 
     }
 
-    suspend fun addEvent(token:String, addRequest: EventAddRequest): EventAddResponse {
+    suspend fun addEvent(token:String, addRequest: AddEventRequest): EventAddResponse {
         val response =  apiService.addEvent(token,addRequest.title, addRequest.date_start, addRequest.date_end )
 
         return response

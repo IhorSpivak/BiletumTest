@@ -1,6 +1,7 @@
 package com.example.biletum.view.profile.events.event_add
 
 
+import android.app.ActivityOptions
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Html
@@ -15,32 +16,24 @@ import android.content.Intent
 import android.os.Handler
 import android.view.Gravity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.lifecycle.ViewModelProviders
 import com.example.biletum.data.network.model.dto.CategoryDataItem
 import com.example.biletum.data.network.model.models.CategoryItem
 
 import com.example.biletum.helper.DateHelper
+import com.example.biletum.view_models.EventShareViewModel
+import com.example.biletum.view_models.LocationViewModel
+import kotlinx.android.synthetic.main.activity_add_event.*
 import kotlinx.android.synthetic.main.fragment_add_event1.*
 import java.util.*
 
 
 class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_add_event1) {
 
-
-    companion object {
-        fun newInstance(): AddEventFragmentStep1 {
-
-            val f = AddEventFragmentStep1()
-
-            val bdl = Bundle(1)
-
-            f.setArguments(bdl)
-
-            return f
-
-        }
-    }
-
     private lateinit var viewModel: EventsViewModel
+    private lateinit var locationViewModel: LocationViewModel
+    private lateinit var eventShareViewModel: EventShareViewModel
+
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -57,9 +50,27 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
     )
 
 
+
+    companion object {
+        fun newInstance(): AddEventFragmentStep1 {
+
+            val f = AddEventFragmentStep1()
+
+            val bdl = Bundle(1)
+
+            f.setArguments(bdl)
+
+            return f
+
+        }
+    }
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        eventShareViewModel= ViewModelProviders.of(activity!!).get(EventShareViewModel::class.java)
         ed_start_day.onFocusChangeListener = object : View.OnFocusChangeListener {
             override fun onFocusChange(view: View, hasFocus: Boolean) {
                 if (hasFocus) {
@@ -114,6 +125,20 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             }
         }
 
+        btn_go_to_step_2.setOnClickListener {
+            addParametersToEvent()
+            activity!!.view_pager.setCurrentItem(1, true)
+        }
+
+    }
+
+    private fun addParametersToEvent() {
+        eventShareViewModel!!.setTitle(ed_name.text.toString())
+        eventShareViewModel!!.setStartDay(ed_start_day.text.toString())
+        eventShareViewModel!!.setEndDay(ed_end_date.text.toString())
+        eventShareViewModel!!.setLocation(ed_country.text.toString())
+        eventShareViewModel!!.setType(ed_type.text.toString())
+        eventShareViewModel!!.setCategory(ed_event_category.text.toString())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

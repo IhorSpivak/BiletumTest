@@ -27,10 +27,10 @@ class ChoseLocationActivity : BaseActivity() {
     )
 
     val cityes = mutableListOf(
-        CityItem("Kyiv",  1),
-        CityItem("Donetsk Federation",  2),
-        CityItem("Lviv",  3),
-        CityItem("Odessa",  4)
+        CityItem("Kyiv",  1,1,1),
+        CityItem("Donetsk Federation",  2,2,2),
+        CityItem("Lviv",  3,3,3),
+        CityItem("Odessa",  4,4,4)
     )
     @Inject
     lateinit var sharedPreferences: SharedPreferences

@@ -1,7 +1,7 @@
 package com.example.biletum.interactors
 
+import com.example.biletum.data.network.model.requests.events.AddEventRequest
 import com.example.biletum.repository.DataRepository
-import com.example.biletum.data.network.model.requests.events.EventAddRequest
 import com.example.biletum.data.network.model.responses.events.EventAddResponse
 
 import javax.inject.Inject
@@ -15,6 +15,6 @@ class AddEventIteractor @Inject constructor(private val dataRepository: DataRepo
 
     }
 
-    data class Params(val token: String,val eventAddRequest: EventAddRequest)
+    data class Params(val token: String,val eventAddRequest: AddEventRequest)
 
 }
