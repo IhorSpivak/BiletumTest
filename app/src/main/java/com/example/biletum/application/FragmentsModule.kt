@@ -6,6 +6,7 @@ import com.example.biletum.view.profile.events.event_add.AddEventFragmentStep2
 import com.example.biletum.view.profile.events.event_add.AddEventFragmentStep3
 import com.example.biletum.view.profile.events.event_add.AddEventFragmentStep4
 import com.example.biletum.view.profile.events.events_list.EventsFragment
+import com.example.biletum.view.profile.events.events_list.MyEventsFragment
 import com.example.biletum.view.profile.login.LoginFragment
 import com.example.biletum.view.profile.profile.ProfileFragment
 import dagger.Module
@@ -39,4 +40,7 @@ interface FragmentsModule {
 
     @ContributesAndroidInjector
     fun profileFragment(): ProfileFragment
+
+    @ContributesAndroidInjector
+    fun myEventsFragment(): MyEventsFragment
 }

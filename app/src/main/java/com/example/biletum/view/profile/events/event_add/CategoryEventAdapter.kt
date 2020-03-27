@@ -6,11 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.biletum.application.AutoUpdatableAdapter
 import com.example.biletum.application.inflate
 import com.example.biletum.data.network.model.models.CategoryItem
-import com.example.biletum.data.network.model.models.TypeItem
 import kotlinx.android.synthetic.main.category_item.view.*
-import kotlinx.android.synthetic.main.type_item.view.*
 import kotlinx.android.synthetic.main.type_item.view.rl_root
-import kotlinx.android.synthetic.main.type_item.view.tv_name
+import kotlinx.android.synthetic.main.type_item.view.tv_location
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -51,7 +49,7 @@ class CategoryEventAdapter @Inject constructor(): RecyclerView.Adapter<CategoryE
         fun bin(item: CategoryItem) {
 
             itemView.cb.isChecked = item.isCheked
-            itemView.tv_name.text = item.name
+            itemView.tv_location.text = item.name
 
             itemView.rl_root.setOnClickListener {
                 item.isCheked = !item.isCheked

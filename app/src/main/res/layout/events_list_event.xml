@@ -3,102 +3,164 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="113dp"
-    android:layout_marginEnd="20dp"
-    android:elevation="16dp"
-    app:elevation="16dp"
+    android:layout_height="124dp"
+    android:layout_marginEnd="16dp"
+
     android:background="@drawable/wallet_item_background"
     android:id="@+id/root"
-    android:layout_marginTop="16dp"
-    android:layout_marginStart="20dp">
+    android:layout_marginTop="12dp"
+    android:layout_marginStart="16dp">
+
+
+    <com.joooonho.SelectableRoundedImageView
+
+        android:id="@+id/iv_image_event"
+        android:src="@drawable/pictur"
+        android:layout_width="110dp"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+
+        app:sriv_left_top_corner_radius="13dip"
+        app:sriv_right_top_corner_radius="0dip"
+        app:sriv_left_bottom_corner_radius="13dip"
+        app:sriv_right_bottom_corner_radius="0dip"
+
+
+        />
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_small_caledar"
+        android:layout_toRightOf="@+id/iv_image_event"
+        android:layout_below="@+id/ivent_name"
+        android:layout_marginTop="7dp"
+        android:layout_marginStart="11dp"
+        android:id="@+id/iv_calendar"
+        android:layout_height="wrap_content">
+
+    </ImageView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_small_location"
+        android:layout_toRightOf="@+id/iv_image_event"
+        android:layout_below="@+id/iv_calendar"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="7dp"
+
+        android:id="@+id/iv_small_location"
+        android:layout_height="wrap_content">
+
+    </ImageView>
 
     <TextView
         android:layout_width="wrap_content"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:layout_height="wrap_content"
-        android:text="Title"
-
-        android:layout_marginTop="22dp"
-        android:layout_marginStart="14dp"
+        android:text="Super Music Festival"
+        android:fontFamily="@font/sf_medium"
+        android:layout_toRightOf="@+id/iv_image_event"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="11dp"
         android:id="@+id/ivent_name"
-        android:textSize="12sp"
+        android:textSize="16sp"
   />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxWidth="150dp"
         android:singleLine="true"
-        android:text="РУстам"
+        android:text="Aug 28 - Sep 22, 202"
         android:fontFamily="sans-serif"
-        android:textAllCaps="true"
-        android:id="@+id/tv_name"
-        android:textSize="15sp"
-        android:textColor="#282828"
+
+        android:id="@+id/tv_date"
+        android:layout_marginTop="3dp"
+        android:textSize="10sp"
+        android:layout_toRightOf="@+id/iv_calendar"
+        android:textColor="#2f73f7"
         android:layout_below="@+id/ivent_name"
 
         android:layout_marginStart="14dp"
 />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="26 ноября "
-        android:id="@+id/tv_currency"
-        android:fontFamily="sans-serif-medium"
-        android:textAllCaps="true"
-        android:textSize="15sp"
-        android:layout_below="@+id/tv__fiat_value"
-        android:layout_marginEnd="13dp"
-        android:textColor="#72E0BB"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="5dp"
-      />
-
-
-    <TextView
-        android:id="@+id/tv__end_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="12dp"
-        android:layout_below="@+id/tv_currency"
-        android:fontFamily="sans-serif-light"
-        android:text="End date"
-        android:textColor="#777777"
-        android:textSize="12sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="26 ноября "
-        android:fontFamily="sans-serif-medium"
-        android:textAllCaps="true"
-        android:textSize="15sp"
-        android:layout_below="@+id/tv__end_date"
-        android:layout_marginEnd="13dp"
-        android:textColor="#72E0BB"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/tv_date_end_value"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="5dp"
+        android:singleLine="true"
+        android:text="Amsterdam, Netherlands"
+        android:fontFamily="sans-serif"
+
+        android:id="@+id/tv_location"
+        android:layout_marginTop="3dp"
+        android:textSize="10sp"
+        android:layout_toRightOf="@+id/iv_calendar"
+        android:textColor="#b3b3b6"
+        android:layout_below="@+id/tv_date"
+
+        android:layout_marginStart="14dp"
         />
 
-
-    <TextView
-        android:id="@+id/tv__fiat_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="22dp"
+    <RelativeLayout
+        android:layout_width="24dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rl_bg_heart"
+        android:layout_alignParentEnd="true"
         android:layout_marginEnd="13dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/bg_icons"
+        android:layout_height="24dp">
+        <ImageView
 
-        android:fontFamily="sans-serif-light"
-        android:text="Start date"
-        android:textColor="#777777"
-        android:textSize="12sp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_is_favorite"
+            android:fontFamily="@font/sf_medium"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_like"
+            android:singleLine="true"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="#4D000000"
+            android:textSize="24sp">
+
+        </ImageView>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="24dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rl_bg_share"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/bg_icons"
+        android:layout_toLeftOf="@+id/rl_bg_heart"
+
+        android:layout_height="24dp">
+
+        <ImageView
+            android:id="@+id/tv_case_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_share"
+
+            android:singleLine="true"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="#4D000000"
+            android:textSize="24sp">
+
+        </ImageView>
+
+    </RelativeLayout>
+
 
 
 </RelativeLayout>

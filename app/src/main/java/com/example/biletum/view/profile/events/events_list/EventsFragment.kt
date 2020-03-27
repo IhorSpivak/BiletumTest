@@ -1,7 +1,6 @@
 package com.example.biletum.view.profile.events.events_list
 
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -15,8 +14,6 @@ import com.example.biletum.view_models.EventsViewModel
 
 import com.example.biletum.view.profile.BaseFragment
 import com.example.biletum.helper.USER_KEY
-import com.example.biletum.view.profile.events.filter.EventsFilterActivity
-import com.example.biletum.view.profile.profile.ProfileActivity
 
 import kotlinx.android.synthetic.main.fragment_event.*
 import javax.inject.Inject
@@ -33,9 +30,24 @@ class EventsFragment : BaseFragment(R.layout.fragment_event), SwipeRefreshLayout
     lateinit var eventAdapter: EventAdapter
 
 
+    companion object {
+        fun newInstance(): EventsFragment {
+
+            val f = EventsFragment()
+
+            val bdl = Bundle(1)
+
+            f.setArguments(bdl)
+
+            return f
+
+        }
+    }
+
+
     override fun onResume() {
         super.onResume()
-        viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString())
+        viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString(),"all")
 
 
     }
@@ -60,21 +72,13 @@ class EventsFragment : BaseFragment(R.layout.fragment_event), SwipeRefreshLayout
 
 
         swipe_refresh_layout.setOnRefreshListener {
-            viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString())
+            viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString(),"all")
             rv_events_list.visibility = View.GONE
 
 
         }
 
-        iv_profile.setOnClickListener {
-            val intent = Intent(activity, ProfileActivity::class.java)
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
-        }
 
-        btn_filter.setOnClickListener {
-            val intent = Intent(activity, EventsFilterActivity::class.java)
-            startActivityForResult(intent, 1)
-        }
 
     }
 
@@ -96,18 +100,21 @@ class EventsFragment : BaseFragment(R.layout.fragment_event), SwipeRefreshLayout
     }
 
     private fun handleEmptyList() {
-
+        progressBarShow(false)
+        rv_events_list.visibility = View.GONE
     }
 
     private fun handleListEventSuccess(data: List<EventItemResponse>) {
         rv_events_list?.apply {
             eventAdapter.collection = data
             adapter = eventAdapter
-            progressBarShow(false)
-            rv_events_list.visibility = View.VISIBLE
+            eventAdapter.onItemClickShare = { item -> shareEvent(item.id) }
             Handler().postDelayed({ swipe_refresh_layout.isRefreshing = false }, 500)
 
         }
+
+        progressBarShow(false)
+        rv_events_list.visibility = View.VISIBLE
     }
 
 
@@ -123,6 +130,13 @@ class EventsFragment : BaseFragment(R.layout.fragment_event), SwipeRefreshLayout
       }
     }
 
+    private fun shareEvent(id: Int) {
+        val shareIntent = Intent()
+        shareIntent.action = Intent.ACTION_SEND
+        shareIntent.type="text/plain"
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "dev.biletum.com/ru/event/$id")
+        startActivity(Intent.createChooser(shareIntent, "dev.biletum.com/ru/event/$id"))
+    }
     
 
 }

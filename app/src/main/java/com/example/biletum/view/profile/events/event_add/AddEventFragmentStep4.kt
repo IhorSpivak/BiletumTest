@@ -22,7 +22,14 @@ class AddEventFragmentStep4: BaseFragment(R.layout.fragment_add_event4) {
 
     var title: String? = ""
     var desciption: String? = ""
-    val newEvent: AddEventRequest? = null
+    var start_date: String? = ""
+    var end_date: String? = ""
+    var location: String? = ""
+    var contact: String? = ""
+    var categories: List<Any>? = null
+    var photos: List<String>? = null
+    var agenda:  List<String>? = null
+    var type: Int? = null
     private lateinit var viewModel: EventsViewModel
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -54,19 +61,43 @@ class AddEventFragmentStep4: BaseFragment(R.layout.fragment_add_event4) {
             title = it.toString()
         })
 
-        model.title.observe(this, object : Observer<Any> {
+        model.desription.observe(this, object : Observer<Any> {
             override fun onChanged(o: Any?) {
-              title = o!!.toString()
+              desciption = o!!.toString()
             }
         })
 
-        model.desription.observe(this, object : Observer<Any> {
+        model.startDate.observe(this, object : Observer<Any> {
             override fun onChanged(o: Any?) {
-                desciption = o!!.toString()
+                start_date = o.toString()
+            }
+        })
+
+        model.endDate.observe(this, object : Observer<Any> {
+            override fun onChanged(o: Any?) {
+                end_date = o.toString()
             }
         })
 
         model.type.observe(this, object : Observer<Any> {
+            override fun onChanged(o: Any?) {
+                type = o.toString().toIntOrNull()
+            }
+        })
+
+        model.category.observe(this, object : Observer<Any> {
+            override fun onChanged(o: Any?) {
+
+            }
+        })
+
+        model.photos.observe(this, object : Observer<Any> {
+            override fun onChanged(o: Any?) {
+
+            }
+        })
+
+        model.agenda.observe(this, object : Observer<Any> {
             override fun onChanged(o: Any?) {
 
             }
@@ -74,12 +105,10 @@ class AddEventFragmentStep4: BaseFragment(R.layout.fragment_add_event4) {
 
 
         btn_add_event.setOnClickListener {
-
                 viewModel.addEvent(sharedPreferences.getString(USER_KEY,"").toString(), AddEventRequest(title.toString(),desciption.toString(),
                     emptyList(), emptyList(),
-                    "2020-04-01T15:45","2020-04-02T17:45","","test",
-                    listOf(1, 2),"test","test",1))
-
+                    "2020-03-01T15:45","2020-03-02T17:45","test",
+                    listOf(1, 2),location.toString(),1,1,contact.toString(),1))
             }
 
 

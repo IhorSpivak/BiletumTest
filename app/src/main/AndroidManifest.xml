@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.example.biletum.view.profile.events.events_list.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:fitsSystemWindows="true"
             android:screenOrientation="portrait">
 
 

@@ -138,7 +138,7 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
         eventShareViewModel!!.setEndDay(ed_end_date.text.toString())
         eventShareViewModel!!.setLocation(ed_country.text.toString())
         eventShareViewModel!!.setType(ed_type.text.toString())
-        eventShareViewModel!!.setCategory(ed_event_category.text.toString())
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

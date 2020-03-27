@@ -92,7 +92,7 @@ class LoginFragment: BaseFragment(com.example.biletum.R.layout.fragment_login) {
 
                     }
                     13,14,15,16,17 -> {
-                        viewModel.login(ed_phone.text.toString())
+                        viewModel.login("+" + ed_phone.text.toString())
                         userPhone = ed_phone.text.toString()
                         please(duration = 300) {
                             animate(card_first) toBe {

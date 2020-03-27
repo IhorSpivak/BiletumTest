@@ -28,14 +28,15 @@ class DataRepository(private val apiService:BiletumAPI) {
     }
 
     suspend fun addEvent(token:String, addRequest: AddEventRequest): EventAddResponse {
-        val response =  apiService.addEvent(token,addRequest.title, addRequest.date_start, addRequest.date_end )
+        val response =  apiService.addEvent(token,addRequest.title, addRequest.date_start, addRequest.date_end,addRequest.event_type_id,
+            addRequest.categories,addRequest.agenda,addRequest.contact,addRequest.photos)
 
         return response
 
     }
 
-    suspend fun getEvents(token:String): EventsListResponse{
-        val response =  apiService.getEvents(token)
+    suspend fun getEvents(token:String, type: String): EventsListResponse{
+        val response =  apiService.getEvents(token,type)
 
         return response
 

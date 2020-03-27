@@ -69,6 +69,10 @@ object DateHelper {
         return sdfServer.format(calendar.getTime())
     }
 
+    fun getDateForServerFromCalendar(date: Date): String {
+        return sdfServer.format(date)
+    }
+
     fun getTimeForServerFromCalendar(calendar: Calendar): String {
         return sdfServerTime.format(calendar.getTime())
     }

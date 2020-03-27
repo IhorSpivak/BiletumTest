@@ -35,7 +35,7 @@ class ApplicationModule {
         val httpLoggingInterceptor = LoggingInterceptor.Builder()
             .loggable(BuildConfig.DEBUG)
 
-            .setLevel(Level.BODY)
+            .setLevel(Level.BASIC)
             .log(Platform.INFO)
             .tag("NETWORK")
             .executor(Executors.newSingleThreadExecutor())

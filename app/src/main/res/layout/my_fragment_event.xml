@@ -1,0 +1,106 @@
+
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:id="@+id/scrollingView"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="#F8F8F8"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Past events"
+            android:gravity="center|left"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sf_medium"
+            android:layout_marginStart="16dp"
+            android:id="@+id/tv_past_title"
+            >
+
+        </TextView>
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/rv_past_events_list"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_past_title"
+            android:orientation="horizontal"
+
+            android:clipToPadding="true"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+            />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="My upcoming events"
+            android:layout_marginTop="22dp"
+            android:gravity="center|left"
+            android:layout_below="@+id/rv_past_events_list"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sf_medium"
+            android:layout_marginStart="16dp"
+            android:id="@+id/tv_upcoming_title"
+            >
+
+        </TextView>
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/rv_events_list"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tv_upcoming_title"
+                android:clipToPadding="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+                />
+
+
+        <com.agrawalsuneet.dotsloader.loaders.TashieLoader
+            android:layout_width="30dp"
+            android:layout_height="5dp"
+            app:tashieloader_animDelay="100"
+            app:tashieloader_animDur="300"
+            android:id="@+id/pb"
+            app:tashieloader_dotsColor="#475AEF"
+            app:tashieloader_dotsDist="5dp"
+            android:visibility="visible"
+            app:tashieloader_dotsRadius="5dp"
+            android:layout_below="@+id/tv_past_title"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+
+            app:tashieloader_interpolator="@android:anim/accelerate_interpolator"
+            app:tashieloader_noOfDots="6" />
+    </RelativeLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>
+
+
+
+
+
+

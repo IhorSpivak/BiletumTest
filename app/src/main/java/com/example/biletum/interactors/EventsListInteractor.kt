@@ -9,10 +9,10 @@ class EventsListInteractor @Inject constructor(private val dataRepository: DataR
 
 
     override suspend fun invoke(executeParams: Params): EventsListResponse {
-        return dataRepository.getEvents(executeParams.token)
+        return dataRepository.getEvents(executeParams.token, executeParams.type)
 
     }
 
-    data class Params(val token: String)
+    data class Params(val token: String, val type: String)
 
 }

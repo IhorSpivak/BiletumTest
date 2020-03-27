@@ -15,7 +15,9 @@ class EventShareViewModel @Inject constructor(): BaseViewModel() {
     val endDate = MutableLiveData<Any>()
     val location = MutableLiveData<Any>()
     val type = MutableLiveData<Any>()
-    val category = MutableLiveData<Any>()
+    val photos = MutableLiveData<List<Any>>()
+    val agenda = MutableLiveData<List<Any>>()
+    val category = MutableLiveData<List<Any>>()
 
 
 
@@ -41,9 +43,18 @@ class EventShareViewModel @Inject constructor(): BaseViewModel() {
         type.value = msg
     }
 
-    fun setCategory(msg:String){
+    fun setCategory(msg:List<Int>){
         category.value = msg
     }
+
+    fun setPhotos(msg:List<String>){
+        category.value = msg
+    }
+
+    fun setAgenda(msg:List<String>){
+        category.value = msg
+    }
+
 
 
 }

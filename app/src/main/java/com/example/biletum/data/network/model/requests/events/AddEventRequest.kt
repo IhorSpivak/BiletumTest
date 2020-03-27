@@ -10,9 +10,10 @@ data class AddEventRequest(
     val agenda :List<String>,
     val date_start :String,
     val date_end :String,
-    val region :String,
     val url  :String,
     val categories :List<Int>,
     val location :String,
+    val country_id :Int,
+    val city_id :Int,
     val contact :String,
     var event_type_id  :Int)

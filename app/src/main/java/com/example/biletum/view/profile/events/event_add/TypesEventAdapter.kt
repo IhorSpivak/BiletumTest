@@ -46,7 +46,7 @@ class TypesEventAdapter @Inject constructor(): RecyclerView.Adapter<TypesEventAd
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bin(item: TypeItem) {
-            itemView.tv_name.text = item.name
+            itemView.tv_location.text = item.name
 
             itemView.rl_root.setOnClickListener {
                 onItemClick?.invoke(collection[adapterPosition])

@@ -34,13 +34,19 @@ interface BiletumAPI {
         @Header("X-Token-Key") authorization:String,
         @Field("title") title:String,
         @Field("date_start") date_start: String,
-        @Field("date_end") date_end: String
+        @Field("date_end") date_end: String,
+        @Field("event_type_id") event_type_id:Int,
+        @Field("categories") categories:List<Int>,
+        @Field("agenda") agenda:List<String>,
+        @Field("contact") contact:String,
+        @Field("photos") photos:List<String>
     ): EventAddResponse
 
 
     @GET("/event/list")
     suspend fun getEvents(
-        @Header("X-Token-Key") authorization:String
+        @Header("X-Token-Key") authorization:String,
+        @Query("type") type : String
     ): EventsListResponse
 
     @GET("/event_type/list")

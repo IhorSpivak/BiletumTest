@@ -45,14 +45,14 @@ class EventsViewModel @Inject constructor(private val addEventInteractor: AddEve
 
     fun addEvent(token: String, eventAddRequest: AddEventRequest){
         uiScope.launch {
-            val addEventData = addEventInteractor.invoke(AddEventIteractor.Params("00deda2a-096c-4afc-b335-81d6a19a415a",eventAddRequest))
+            val addEventData = addEventInteractor.invoke(AddEventIteractor.Params(token,eventAddRequest))
             _addEventData.value = addEventData
         }
     }
 
-    fun getListEvents(token: String){
+    fun getListEvents(token: String, type: String){
         uiScope.launch {
-            val getListEventsData = getListEventsInteractor.invoke(EventsListInteractor.Params(token))
+            val getListEventsData = getListEventsInteractor.invoke(EventsListInteractor.Params(token, type))
             _getListEventsData.value = getListEventsData
         }
     }
