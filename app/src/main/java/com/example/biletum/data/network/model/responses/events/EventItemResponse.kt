@@ -1,5 +1,6 @@
 package com.example.biletum.data.network.model.responses.events
 
+import com.example.biletum.data.network.model.models.Agenda
 import com.example.biletum.data.network.model.models.City
 import com.example.biletum.data.network.model.models.Country
 import com.example.biletum.data.network.model.models.Personal
@@ -14,7 +15,7 @@ data class EventItemResponse(
     val url:String,
     val photos:List<String>,
     val location:String,
-    val agenda:String,
+    val agenda:List<Agenda>,
     val contact:String,
     val access_type:String,
     val country: Country,

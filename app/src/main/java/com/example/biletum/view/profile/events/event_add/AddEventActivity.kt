@@ -34,12 +34,6 @@ class AddEventActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.example.biletum.R.layout.activity_add_event)
 
-
-
-        step_bar.setStateDescriptionData(descriptionData)
-        step_bar.setStateDescriptionTypeface("res/font/sf_ligth.otf");
-        step_bar.setStateNumberTypeface("fonts/Questrial-Regular.ttf");
-
         setupViewPager()
 
         view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -54,19 +48,19 @@ class AddEventActivity : BaseActivity() {
             override fun onPageSelected(position: Int) {
                 when(position){
                     0 -> {
-                        step_bar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE)
+
                         tv_title_steps.text = "General Information"
                     }
                     1 -> {
-                        step_bar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO)
+
                         tv_title_steps.text = "Images"
                     }
                     2 -> {
-                        step_bar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE)
+
                         tv_title_steps.text = "Description"
                     }
                     3 -> {
-                        step_bar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR)
+
                         tv_title_steps.text = "Sell ticket"
                     }
 

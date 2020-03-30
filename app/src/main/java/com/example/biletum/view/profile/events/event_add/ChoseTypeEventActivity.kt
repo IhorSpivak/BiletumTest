@@ -8,21 +8,31 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
-import com.example.biletum.data.network.model.models.TypeItem
+import com.example.biletum.data.network.model.models.EventType
+import com.example.biletum.data.network.model.models.EventTypeEvent
+import com.example.biletum.helper.USER_KEY
 import com.example.biletum.view.profile.activity.BaseActivity
+import com.example.biletum.view_models.EventsViewModel
 import kotlinx.android.synthetic.main.activity_list.*
 import javax.inject.Inject
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import kotlinx.android.synthetic.main.activity_category_list.*
+import kotlinx.android.synthetic.main.activity_list.btn_back
+import kotlinx.android.synthetic.main.activity_list.ed_search
+import kotlinx.android.synthetic.main.activity_list.recycler_view
+
 
 class ChoseTypeEventActivity : BaseActivity() {
 
 
-    val countryes = mutableListOf(
-        TypeItem("Concert", 1),
-        TypeItem("Congress", 2),
-        TypeItem("Seminar", 3),
-        TypeItem("Show", 4)
+    private lateinit var viewModel: EventsViewModel
 
-    )
+    var listTypes = emptyList<EventType>()
+
+    var dataList : EventTypeEvent? = null
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
@@ -35,18 +45,29 @@ class ChoseTypeEventActivity : BaseActivity() {
 
         setContentView(com.example.biletum.R.layout.activity_list)
 
+        dataList = intent.getParcelableExtra<EventTypeEvent>("data")
+
+        viewModel = getViewModel(EventsViewModel::class.java)
+        viewModel.getTypesEvent(sharedPreferences.getString(USER_KEY,"").toString())
+
 
         recycler_view?.apply {
-            typesEventAdapter.collection = countryes
+            recycler_view.layoutManager = GridLayoutManager(context, 2)
+            typesEventAdapter.collection = dataList!!.list
             adapter = typesEventAdapter
-            typesEventAdapter.onItemClick = { item -> onTypeClick(item) }
         }
+
         btn_back.setOnClickListener {
             onBackPressed()
 
         }
 
-        ed_search.addTextChangedListener(object : TextWatcher {
+        btn_go_to_step_2.setOnClickListener {
+            onSaveTypes()
+        }
+
+
+            ed_search.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 filter(s.toString())
             }
@@ -61,9 +82,23 @@ class ChoseTypeEventActivity : BaseActivity() {
         })
     }
 
+    private fun onSaveTypes() {
+        val list : List<EventType> = dataList!!.list
+        val typesData = EventTypeEvent(list)
+        val intent = Intent()
+        intent.putExtra("data", typesData)
+        setResult(Activity.RESULT_OK, intent)
+        onBackPressed()
+    }
+
+    private fun handleEmptyList() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+
     fun filter(text: String) {
-        val temp = ArrayList<TypeItem>()
-        for (d in countryes) {
+        val temp = ArrayList<EventType>()
+        for (d in listTypes) {
             //or use .equal(text) with you want equal match
             //use .toLowerCase() for better matches
             if (d.name.toLowerCase().contains(text)) {
@@ -74,11 +109,12 @@ class ChoseTypeEventActivity : BaseActivity() {
         typesEventAdapter.updateList(temp)
     }
 
-    private fun onTypeClick(item: TypeItem) {
+    private fun onTypeClick(item: EventType) {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
         imm!!.hideSoftInputFromWindow(recycler_view.windowToken, 0)
         val intent = Intent()
         intent.putExtra("name", item.name)
+        intent.putExtra("id", item.id)
         setResult(Activity.RESULT_OK, intent)
         onBackPressed()
     }

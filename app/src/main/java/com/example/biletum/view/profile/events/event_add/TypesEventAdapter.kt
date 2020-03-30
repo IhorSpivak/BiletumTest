@@ -5,8 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.biletum.application.AutoUpdatableAdapter
 import com.example.biletum.application.inflate
+import com.example.biletum.data.network.model.models.EventType
 import com.example.biletum.data.network.model.models.TypeItem
+import kotlinx.android.synthetic.main.category_item.view.*
 import kotlinx.android.synthetic.main.type_item.view.*
+import kotlinx.android.synthetic.main.type_item.view.rl_root
+import kotlinx.android.synthetic.main.type_item.view.tv_location
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -14,17 +18,17 @@ import kotlin.properties.Delegates
 class TypesEventAdapter @Inject constructor(): RecyclerView.Adapter<TypesEventAdapter.MyViewHolder>(),
     AutoUpdatableAdapter {
 
-    var onItemClick: ((TypeItem) -> Unit)? = null
-    var typesList: MutableList<TypeItem> = arrayListOf()
+    var onItemClick: ((EventType) -> Unit)? = null
+    var typesList: MutableList<EventType> = arrayListOf()
 
 
-    var collection: List<TypeItem> by Delegates.observable(emptyList()) { _, oldValue, newValue ->
+    var collection: List<EventType> by Delegates.observable(emptyList()) { _, oldValue, newValue ->
 
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder =
-        MyViewHolder(parent.inflate(com.example.biletum.R.layout.type_item))
+        MyViewHolder(parent.inflate(com.example.biletum.R.layout.grid_layout))
 
     override fun getItemCount(): Int = collection.size
 
@@ -38,18 +42,21 @@ class TypesEventAdapter @Inject constructor(): RecyclerView.Adapter<TypesEventAd
         notifyItemRemoved(position)
     }
 
-    fun updateList(list: List<TypeItem>) {
+    fun updateList(list: List<EventType>) {
         collection = list
         notifyDataSetChanged()
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bin(item: TypeItem) {
+        fun bin(item: EventType) {
+            itemView.cb.isChecked = item.isCheked
             itemView.tv_location.text = item.name
 
             itemView.rl_root.setOnClickListener {
-                onItemClick?.invoke(collection[adapterPosition])
+                item.isCheked = !item.isCheked
+                itemView.cb.isChecked = item.isCheked
+
             }
         }
 

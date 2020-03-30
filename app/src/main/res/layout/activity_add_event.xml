@@ -15,7 +15,13 @@
        android:layout_height="wrap_content">
 
        <RelativeLayout
-           android:layout_width="60dp"
+           android:layout_width="match_parent"
+           android:id="@+id/app_bar"
+           android:background="@drawable/bg_app_bar_create_event"
+           android:layout_height="50dp">
+       <RelativeLayout
+           android:layout_width="50dp"
+           android:background="@android:color/transparent"
            android:id="@+id/btn_back"
            android:layout_height="60dp">
 
@@ -23,23 +29,27 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_centerInParent="true"
-               android:src="@drawable/ic_arrow_back"
+               android:src="@drawable/ic_arrow_back_black"
                />
        </RelativeLayout>
 
+
+       </RelativeLayout>
+
+
        <com.kofigyan.stateprogressbar.StateProgressBar
            android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_height="50dp"
            app:spb_currentStateNumber="one"
            app:spb_maxStateNumber="four"
            android:id="@+id/step_bar"
            app:spb_stateTextSize="12sp"
 
            app:spb_stateBackgroundColor="#BDBDBD"
-           app:spb_stateForegroundColor="@color/colorAccent"
+           app:spb_stateForegroundColor="#53F8FF"
            app:spb_stateNumberBackgroundColor="#808080"
            app:spb_stateNumberForegroundColor="#eeeeee"
-           app:spb_currentStateDescriptionColor="@color/colorAccent"
+           app:spb_currentStateDescriptionColor="#53F8FF"
            android:layout_below="@+id/tv_title"
            android:layout_marginTop="20dp"
            app:spb_stateDescriptionColor="#BDBDBD"
@@ -51,10 +61,11 @@
            android:layout_centerHorizontal="true"
            android:layout_height="wrap_content"
            android:id="@+id/tv_title"
-           android:textAllCaps="true"
-           android:textSize="18sp"
-           android:textColor="@color/colorAccent"
-           android:layout_marginTop="10dp"
+           android:fontFamily="@font/sf_medium"
+           android:textSize="17sp"
+
+           android:textColor="@color/black"
+           android:layout_marginTop="15dp"
            android:text="Create Event">
 
        </TextView>
@@ -62,12 +73,14 @@
            android:layout_width="wrap_content"
            android:layout_marginStart="20dp"
 
-           android:layout_marginBottom="20dp"
+
            android:layout_height="wrap_content"
            android:id="@+id/tv_title_steps"
-           android:textColor="@color/colorAccent"
+           android:textColor="@color/black"
            android:layout_below="@+id/step_bar"
            android:layout_marginTop="20dp"
+           android:textSize="17sp"
+           android:fontFamily="@font/sf_semibold"
            android:text="Create Event">
 
        </TextView>

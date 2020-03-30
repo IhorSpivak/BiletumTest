@@ -3,14 +3,23 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#A358D7</item>
-        <item name="colorPrimaryDark">#A358D7</item>
-        <item name="colorAccent">#A358D7</item>
+        <item name="colorPrimary">#475AEF</item>
+        <item name="colorPrimaryDark">#475AEF</item>
+        <item name="colorAccent">#475AEF</item>
     </style>
 
     <style name="MyCheckBox" parent="AppTheme">
-        <item name="colorAccent">@color/colorAccent</item>  // for checked
+        <item name="colorAccent">#475AEF</item>  // for checked
         <item name="android:textColorSecondary">#F1EFF7</item>  // for unchecked
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#475AEF</item>
+        <item name="colorPrimaryDark">#475AEF</item>
+        <item name="colorAccent">#475AEF</item>
+
+        <item name="android:textColorHint">#B3B3B6</item>
+
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -19,6 +28,15 @@
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#EDE9E9</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="colorControlNormal">#EDE9E9</item>
+        <item name="colorControlActivated">#475AEF</item>
+        <item name="colorControlHighlight">#475AEF</item>
+
     </style>
 
 </resources>

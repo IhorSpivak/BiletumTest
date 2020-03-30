@@ -5,6 +5,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -29,17 +30,24 @@
 
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create Event"
-        android:background="@color/colorAccent"
-        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:textColor="#3AA1FF"
+
+        android:textAllCaps="false"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:text="Create Event"
+        android:fontFamily="@font/sf_medium"
+        android:layout_marginBottom="20dp"
+        android:textSize="17sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_next"
         android:layout_centerInParent="true"
-        android:layout_marginTop="20dp"
         android:id="@+id/btn_add_event"
         android:layout_below="@+id/name_text_input"/>
+
+
 
 
 

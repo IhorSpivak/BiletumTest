@@ -10,10 +10,10 @@ class UploadImageInteractor @Inject constructor(private val dataRepository: Data
 
 
     override suspend fun invoke(executeParams: Params): ImageUploadResponse {
-        return dataRepository.imageUpload(executeParams.token, executeParams.file)
+        return dataRepository.imageUpload(executeParams.token, executeParams.image)
 
     }
 
-    data class Params(val token: String, val file: MultipartBody.Part)
+    data class Params(val token: String, val image: MultipartBody.Part)
 
 }

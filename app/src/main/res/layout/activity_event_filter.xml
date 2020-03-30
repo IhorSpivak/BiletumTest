@@ -1,6 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl_topbar"
+
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="60dp"
+            android:id="@+id/btn_back"
+            android:layout_height="60dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_arrow_back"
+                />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/rl_topbar"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_below="@+id/rl_topbar"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/rl_date"
+        android:background="@drawable/backgraund_country_field"
+        android:layout_height="154dp">
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@+id/rl_date"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/rl_location"
+        android:background="@drawable/backgraund_country_field"
+        android:layout_height="119dp">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/rl_location"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:minHeight="183dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/rl_type"
+        android:background="@drawable/backgraund_country_field"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/rl_type"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:minHeight="183dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/rl_category"
+        android:background="@drawable/backgraund_country_field"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_below="@+id/rl_category"
+        android:layout_marginTop="20dp"
+        android:layout_height="50dp">
+
+    </Button>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

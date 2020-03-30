@@ -9,6 +9,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.biletum.R
+import com.example.biletum.data.network.model.requests.events.EventsListRequest
 import com.example.biletum.data.network.model.responses.events.EventItemResponse
 import com.example.biletum.view_models.EventsViewModel
 
@@ -47,7 +48,9 @@ class EventsFragment : BaseFragment(R.layout.fragment_event), SwipeRefreshLayout
 
     override fun onResume() {
         super.onResume()
-        viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString(),"all")
+        viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString(),
+            EventsListRequest(0,50,"","all")
+        )
 
 
     }
@@ -72,7 +75,7 @@ class EventsFragment : BaseFragment(R.layout.fragment_event), SwipeRefreshLayout
 
 
         swipe_refresh_layout.setOnRefreshListener {
-            viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString(),"all")
+            viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString(),  EventsListRequest(0,50,"","all"))
             rv_events_list.visibility = View.GONE
 
 

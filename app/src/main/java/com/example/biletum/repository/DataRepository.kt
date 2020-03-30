@@ -3,6 +3,7 @@ package  com.example.biletum.repository
 import android.content.SharedPreferences
 import com.example.biletum.api.BiletumAPI
 import com.example.biletum.data.network.model.requests.events.AddEventRequest
+import com.example.biletum.data.network.model.requests.events.EventsListRequest
 import com.example.biletum.data.network.model.responses.ProfileResponse
 import com.example.biletum.data.network.model.responses.events.*
 import com.example.biletum.data.network.model.responses.location.CityListResponse
@@ -35,8 +36,9 @@ class DataRepository(private val apiService:BiletumAPI) {
 
     }
 
-    suspend fun getEvents(token:String, type: String): EventsListResponse{
-        val response =  apiService.getEvents(token,type)
+    suspend fun getEvents(token:String,  request: EventsListRequest): EventsListResponse{
+        val response =  apiService.getEvents(token,request.offset,request.limit,
+            request.filter,request.type)
 
         return response
 
@@ -49,7 +51,7 @@ class DataRepository(private val apiService:BiletumAPI) {
     }
 
     suspend fun getEventCategory(token:String): EventCategoryResponse{
-        val response =  apiService.getEventCategoryList(token)
+        val response =  apiService.getEventCategoryList(token,100,100,100)
 
         return response
 
@@ -69,8 +71,8 @@ class DataRepository(private val apiService:BiletumAPI) {
 
     }
 
-    suspend fun imageUpload(token:String, file : MultipartBody.Part): ImageUploadResponse{
-        val response =  apiService.uploadImage(token, file)
+    suspend fun imageUpload(token:String, image: MultipartBody.Part): ImageUploadResponse{
+        val response =  apiService.uploadImage(token, image)
 
         return response
 

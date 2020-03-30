@@ -54,6 +54,12 @@ class EventAdapter @Inject constructor(): RecyclerView.Adapter<EventAdapter.MyNo
         fun bin(item: EventItemResponse){
             itemView.ivent_name.text = item.title
 
+            if (item.city != null && item.country != null){
+                itemView.tv_location.text = item.city.name + ", " + item.country.name
+            } else{
+                itemView.tv_location.text = "without location"
+            }
+
             if(item.image != null) {
                 if (item.image!!.isEmpty()) {
                     itemView.iv_image_event.setImageResource(com.example.biletum.R.drawable.pictur)
@@ -63,10 +69,10 @@ class EventAdapter @Inject constructor(): RecyclerView.Adapter<EventAdapter.MyNo
             }
 
             when(item.personal.is_favorite){
-                true -> {
+                false -> {
                     itemView.iv_is_favorite.setImageResource(com.example.biletum.R.drawable.ic_like)
                 }
-                false -> {
+                true -> {
                     itemView.iv_is_favorite.setImageResource(com.example.biletum.R.drawable.ic_like_not_empty)
                 }
             }

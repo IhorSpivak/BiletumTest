@@ -8,6 +8,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.biletum.R
+import com.example.biletum.data.network.model.requests.events.EventsListRequest
 import com.example.biletum.data.network.model.responses.events.EventItemResponse
 import com.example.biletum.view_models.EventsViewModel
 
@@ -54,7 +55,7 @@ class MyEventsFragment : BaseFragment(R.layout.my_fragment_event), SwipeRefreshL
 
     override fun onResume() {
         super.onResume()
-        viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString(),"own")
+        viewModel.getListEvents(sharedPreferences.getString(USER_KEY,"").toString(),  EventsListRequest(0,50,"","own"))
 
 
     }

@@ -3,6 +3,7 @@ package com.example.biletum.view_models
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.biletum.data.network.model.requests.events.AddEventRequest
+import com.example.biletum.data.network.model.requests.events.EventsListRequest
 import com.example.biletum.data.network.model.responses.events.*
 import com.example.biletum.interactors.AddEventIteractor
 import com.example.biletum.interactors.CategoryEventInteractor
@@ -50,9 +51,9 @@ class EventsViewModel @Inject constructor(private val addEventInteractor: AddEve
         }
     }
 
-    fun getListEvents(token: String, type: String){
+    fun getListEvents(token: String, listRequest: EventsListRequest){
         uiScope.launch {
-            val getListEventsData = getListEventsInteractor.invoke(EventsListInteractor.Params(token, type))
+            val getListEventsData = getListEventsInteractor.invoke(EventsListInteractor.Params(token, listRequest))
             _getListEventsData.value = getListEventsData
         }
     }
@@ -72,9 +73,9 @@ class EventsViewModel @Inject constructor(private val addEventInteractor: AddEve
         }
     }
 
-    fun uploadImage(token: String, file : MultipartBody.Part){
+    fun uploadImage(token: String, image: MultipartBody.Part){
         uiScope.launch {
-            val uploadImageData = uploadImageInteractor.invoke(UploadImageInteractor.Params(token, file))
+            val uploadImageData = uploadImageInteractor.invoke(UploadImageInteractor.Params(token, image))
             _uploadImageData.value = uploadImageData
         }
     }

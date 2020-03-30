@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
    <RelativeLayout
@@ -8,18 +9,29 @@
        android:background="@drawable/bg_header_image"
        android:layout_marginStart="20dp"
        android:layout_marginEnd="20dp"
-       android:layout_marginTop="20dp"
-
-       android:layout_height="200dp">
+       android:layout_marginTop="10dp"
+        android:id="@+id/rl_mail_image"
+       android:layout_height="219dp">
 
        <TextView
            android:layout_width="wrap_content"
-           android:textColor="@color/black"
+           android:textColor="#3AA1FF"
            android:layout_centerInParent="true"
+           android:fontFamily="@font/sf_medium"
            android:text="+ Add header image"
            android:layout_height="wrap_content">
 
        </TextView>
+
+
+       <ImageView
+           android:layout_width="300dp"
+           android:layout_height="300dp"
+           android:layout_gravity="center"
+           android:layout_marginTop="20dp"
+           android:scaleType="fitXY"
+
+           android:id="@+id/iv"/>
    </RelativeLayout>
 
     <TextView
@@ -29,6 +41,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"
         android:layout_centerInParent="true"
+        android:fontFamily="@font/sf_medium"
         android:text="+ Add image from previous event"
         android:layout_height="wrap_content">
 
@@ -39,7 +52,7 @@
         android:orientation="horizontal"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="10dp"
-        android:layout_height="160dp">
+        android:layout_height="110dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,18 +61,18 @@
         android:gravity="center"
         android:layout_marginEnd="10dp"
 
-        android:layout_marginTop="20dp"
 
-        android:layout_height="130dp">
 
-        <TextView
+        android:layout_height="108dp">
+
+        <ImageView
             android:layout_width="wrap_content"
             android:textColor="@color/black"
             android:layout_centerInParent="true"
-            android:text="+"
+            android:src="@drawable/ic_add_image"
             android:layout_height="wrap_content">
 
-        </TextView>
+        </ImageView>
     </LinearLayout>
 
         <LinearLayout
@@ -67,55 +80,68 @@
             android:background="@drawable/bg_header_image"
             android:gravity="center"
             android:layout_weight="1"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_height="130dp">
 
-            <TextView
+            android:layout_marginEnd="10dp"
+            android:layout_height="108dp">
+
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:textColor="@color/black"
                 android:layout_centerInParent="true"
-                android:text="+"
-                android:layout_height="wrap_content">
-
-            </TextView>
+                android:src="@drawable/ic_add_image"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:background="@drawable/bg_header_image"
             android:gravity="center"
-            android:layout_marginTop="20dp"
+
             android:layout_weight="1"
             android:layout_marginEnd="10dp"
-            android:layout_height="130dp">
+            android:layout_height="108dp">
 
 
-            <TextView
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:textColor="@color/black"
                 android:layout_centerInParent="true"
-                android:text="+"
-                android:layout_height="wrap_content">
-
-            </TextView>
+                android:src="@drawable/ic_add_image"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
     </LinearLayout>
 
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Next step"
-        android:background="@color/colorAccent"
-        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:textColor="#3AA1FF"
+
+        android:textAllCaps="false"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:text="Continue"
+        android:fontFamily="@font/sf_medium"
+        android:layout_marginBottom="20dp"
+        android:textSize="17sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_next"
         android:layout_centerInParent="true"
-        android:layout_marginTop="20dp"
         android:id="@+id/btn_add_event"
         android:layout_below="@+id/name_text_input"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:fontFamily="@font/sf_medium"
+        android:textColor="#3AA1FF"
+        android:text="Skip this step"
+        android:layout_height="wrap_content">
+
+    </TextView>
 
 
 

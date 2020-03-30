@@ -57,10 +57,10 @@ class MyEventsAdapter @Inject constructor(): RecyclerView.Adapter<MyEventsAdapte
 
 
             if(item.image != null) {
-                if (item.image!!.isEmpty()) {
-                    itemView.iv_image_event.setImageResource(com.example.biletum.R.drawable.pictur)
+                if (item.image.isEmpty()) {
+                    itemView.iv_image_event.setImageResource(R.drawable.pictur)
                 } else {
-                    Picasso.get().load(item.image).into(itemView.iv_image_event);
+                    Picasso.get().load(item.image).into(itemView.iv_image_event)
                 }
             }
 

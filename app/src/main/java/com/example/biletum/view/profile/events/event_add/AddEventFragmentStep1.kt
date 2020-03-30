@@ -1,7 +1,6 @@
 package com.example.biletum.view.profile.events.event_add
 
 
-import android.app.ActivityOptions
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Html
@@ -19,8 +18,11 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.ViewModelProviders
 import com.example.biletum.data.network.model.dto.CategoryDataItem
 import com.example.biletum.data.network.model.models.CategoryItem
+import com.example.biletum.data.network.model.models.EventType
+import com.example.biletum.data.network.model.models.EventTypeEvent
 
 import com.example.biletum.helper.DateHelper
+import com.example.biletum.helper.USER_KEY
 import com.example.biletum.view_models.EventShareViewModel
 import com.example.biletum.view_models.LocationViewModel
 import kotlinx.android.synthetic.main.activity_add_event.*
@@ -33,6 +35,10 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
     private lateinit var viewModel: EventsViewModel
     private lateinit var locationViewModel: LocationViewModel
     private lateinit var eventShareViewModel: EventShareViewModel
+    private val GALLERY = 5
+    private val CAMERA = 6
+    var listTypes = listOf<EventType>()
+    var list = listOf<CategoryItem>()
 
 
     @Inject
@@ -41,13 +47,8 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
     private var calendar : Calendar? = null
     private var dateEvent : String? = ""
     private var timeEvent : String? = ""
-    private var list : List<CategoryItem>? =  mutableListOf(
-        CategoryItem("Fashion", 1, false),
-        CategoryItem("Design", 2 ,false),
-        CategoryItem("Hobby", 3, false),
-        CategoryItem("IT", 4, false)
+    private val IMAGE_DIRECTORY = "/demonuts"
 
-    )
 
 
 
@@ -70,7 +71,36 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = getViewModel(EventsViewModel::class.java)
+
+        viewModel.getTypesEvent(sharedPreferences.getString(USER_KEY,"").toString())
+        viewModel.getCategoryEvent(sharedPreferences.getString(USER_KEY,"").toString())
+
         eventShareViewModel= ViewModelProviders.of(activity!!).get(EventShareViewModel::class.java)
+
+
+        viewModel.getListTypeEvents.observe(this, androidx.lifecycle.Observer {
+            when (it.List.isNotEmpty()) {
+                true -> {
+                    handleListTypeSuccess(it.List)
+                }
+                false -> {
+                    handleEmptyList()
+                }
+            }
+        })
+
+        viewModel.getListCategoryEvents.observe(this, androidx.lifecycle.Observer {
+            when (it.list.isNotEmpty()) {
+                true -> {
+                    handleListCategotyesSuccess(it.list)
+                }
+                false -> {
+                    handleEmptyList()
+                }
+            }
+        })
+
         ed_start_day.onFocusChangeListener = object : View.OnFocusChangeListener {
             override fun onFocusChange(view: View, hasFocus: Boolean) {
                 if (hasFocus) {
@@ -99,6 +129,8 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             override fun onFocusChange(view: View, hasFocus: Boolean) {
                 if (hasFocus) {
                     val intent = Intent(activity, ChoseTypeEventActivity::class.java)
+                    val typesData = listTypes?.let { EventTypeEvent(it) }
+                    intent.putExtra("data", typesData)
                     startActivityForResult(intent, 2)
                 }
             }
@@ -132,6 +164,18 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
 
     }
 
+    private fun handleListCategotyesSuccess(list: Any) {
+
+    }
+
+    private fun handleEmptyList() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    private fun handleListTypeSuccess(list: List<EventType>) {
+        listTypes = list
+    }
+
     private fun addParametersToEvent() {
         eventShareViewModel!!.setTitle(ed_name.text.toString())
         eventShareViewModel!!.setStartDay(ed_start_day.text.toString())
@@ -151,16 +195,11 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
                     Handler().postDelayed({ showSnackBar(data) }, 500)
                 }
             }
-
             2 -> {
                 if (data != null) {
-                    val name = data!!.getStringExtra("name")
-                    ed_type.setText(name)
-                    ed_type.clearFocus()
-                    Handler().postDelayed({ showSnackBar(data) }, 500)
+                    setTypes(data)
                 }
             }
-
             3 -> {
                 if (data != null) {
                     setCategoties(data)
@@ -175,7 +214,6 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
 
                 }
             }
-
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
@@ -195,6 +233,23 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
         }
         ed_event_category.setText(text)
         ed_event_category.clearFocus()
+    }
+
+    private fun setTypes(data: Intent) {
+        val dataList = data.getParcelableExtra<EventTypeEvent>("data")
+        var text: String = ""
+        listTypes = dataList.list
+        dataList.list.forEach {
+            if(it.isCheked)
+                if(text.isEmpty()){
+                    text = text + it.name
+                } else {
+                    text = text + "," + it.name
+                }
+
+        }
+        ed_type.setText(text)
+        ed_type.clearFocus()
     }
 
     private fun showSnackBar(data: Intent?) {
@@ -282,6 +337,10 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
 
 
     }
+
+
+
+
 
 
 

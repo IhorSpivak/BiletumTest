@@ -46,17 +46,24 @@ interface BiletumAPI {
     @GET("/event/list")
     suspend fun getEvents(
         @Header("X-Token-Key") authorization:String,
+        @Query("offset") offset : Int,
+        @Query("limit") limit: Int,
+        @Query("filter") filter : String,
         @Query("type") type : String
     ): EventsListResponse
 
     @GET("/event_type/list")
     suspend fun getEventTypeList(
         @Header("X-Token-Key") authorization:String
+
     ): EventTypeResponse
 
     @GET("/category/list")
     suspend fun getEventCategoryList(
-        @Header("X-Token-Key") authorization:String
+        @Header("X-Token-Key") authorization:String,
+        @Query("offset") offset : Int,
+        @Query("limit") limit: Int,
+        @Query("total") total: Int
     ): EventCategoryResponse
 
 
@@ -75,7 +82,7 @@ interface BiletumAPI {
     @POST("/upload/file")
     suspend fun uploadImage(
         @Header("X-Token-Key") authorization:String,
-        @Part file: MultipartBody.Part
+        @Part image: MultipartBody.Part
     ):ImageUploadResponse
 
 
