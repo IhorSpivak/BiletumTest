@@ -83,6 +83,7 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             when (it.List.isNotEmpty()) {
                 true -> {
                     handleListTypeSuccess(it.List)
+                    val a : String = ""
                 }
                 false -> {
                     handleEmptyList()
