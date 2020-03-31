@@ -74,8 +74,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Редактировать"
-        android:id="@+id/btn_login"
+        android:text="Выйти"
+        android:id="@+id/btn_exit"
         android:layout_below="@+id/name_text_input"/>
 
 

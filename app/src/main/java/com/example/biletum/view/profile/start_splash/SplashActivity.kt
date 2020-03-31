@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import com.example.biletum.R
 import com.example.biletum.helper.IS_AUTHORISATION
+import com.example.biletum.helper.USER_KEY
 import com.example.biletum.view.profile.activity.BaseActivity
 import com.example.biletum.view.profile.login.LoginActivity
 import com.example.biletum.view.profile.events.events_list.MainActivity
@@ -25,15 +26,12 @@ class SplashActivity : BaseActivity() {
         setContentView(R.layout.activity_splash)
 
 
-        if(sharedPreferences.getBoolean(IS_AUTHORISATION, false)){
-            val intent = Intent(this@SplashActivity, MainActivity::class.java)
-            startActivity(intent,
-                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        if(sharedPreferences.getString(USER_KEY, "").toString().isNotEmpty()){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         } else{
-
-            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
-            startActivity(intent,
-                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
 

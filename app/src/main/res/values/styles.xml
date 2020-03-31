@@ -14,9 +14,9 @@
     </style>
 
     <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">#475AEF</item>
-        <item name="colorPrimaryDark">#475AEF</item>
-        <item name="colorAccent">#475AEF</item>
+        <item name="colorPrimary">#3AA1FF</item>
+        <item name="colorPrimaryDark">#3AA1FF</item>
+        <item name="colorAccent">#3AA1FF</item>
 
         <item name="android:textColorHint">#B3B3B6</item>
 

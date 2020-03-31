@@ -6,4 +6,6 @@ data class CityItem(
     val state_id:Int,
     val country_id:Int,
     val id:Int
+
+
 )

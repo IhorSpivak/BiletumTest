@@ -5,5 +5,5 @@ import com.example.biletum.data.network.model.models.ItemCountry
 
 data class CountryResponse(
 
-    val list:List<ItemCountry>
+    val List:List<ItemCountry>
 )

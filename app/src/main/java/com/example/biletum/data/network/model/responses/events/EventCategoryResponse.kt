@@ -5,5 +5,5 @@ import com.example.biletum.data.network.model.models.EventType
 
 data class EventCategoryResponse(
 
-    val list:List<EventCategory>
+    val List:List<EventCategory>
 )

@@ -12,7 +12,9 @@ import com.example.biletum.helper.USER_KEY
 import com.example.biletum.view.profile.BaseFragment
 import com.example.biletum.view.profile.login.LoginActivity
 import com.example.biletum.view_models.ProfileViewModel
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.ed_phone
 import javax.inject.Inject
 
 class ProfileFragment: BaseFragment(R.layout.fragment_profile) {
@@ -44,7 +46,9 @@ class ProfileFragment: BaseFragment(R.layout.fragment_profile) {
 
         viewModel.getProfile("00deda2a-096c-4afc-b335-81d6a19a415a")
 
-
+        btn_exit.setOnClickListener {
+           onLogout()
+        }
 
     }
 

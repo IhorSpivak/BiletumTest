@@ -75,7 +75,7 @@ interface BiletumAPI {
     @GET("/city/list")
     suspend fun getCityList(
         @Header("X-Token-Key") authorization:String,
-        @Query("country_id ") id : Int
+        @Query("country_id") id : Int
     ): CityListResponse
 
     @Multipart

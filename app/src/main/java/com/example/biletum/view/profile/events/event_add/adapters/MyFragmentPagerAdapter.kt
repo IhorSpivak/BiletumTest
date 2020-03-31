@@ -1,8 +1,12 @@
-package com.example.biletum.view.profile.events.event_add
+package com.example.biletum.view.profile.events.event_add.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.biletum.view.profile.events.event_add.fragments.AddEventFragmentStep1
+import com.example.biletum.view.profile.events.event_add.fragments.AddEventFragmentStep2
+import com.example.biletum.view.profile.events.event_add.fragments.AddEventFragmentStep3
+import com.example.biletum.view.profile.events.event_add.fragments.AddEventFragmentStep4
 
 
 class MyFragmentPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {

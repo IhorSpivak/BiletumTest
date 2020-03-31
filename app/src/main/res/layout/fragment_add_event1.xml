@@ -14,13 +14,13 @@
 
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="#F2F2F2"
+
     android:layout_height="match_parent">
 
 <LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
 
-    android:background="@color/white"
+    android:background="#F2F2F2"
 
     android:layout_height="match_parent">
 
@@ -36,6 +36,7 @@
         android:layout_height="52dp"
         android:background="@drawable/bg_input"
         android:paddingBottom="10dp"
+
         android:layout_marginTop="20dp"
 
         >
@@ -55,6 +56,20 @@
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_light"
+        android:textSize="10sp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="30dp"
+        android:id="@+id/tv_alert_name"
+        android:visibility="visible"
+        android:text="Please enter your phone number"
+        android:textColor="@color/coral">
+
+    </TextView>
+
     <com.google.android.material.textfield.TextInputLayout
 
         android:layout_centerInParent="true"
@@ -62,12 +77,12 @@
         android:id="@+id/name_start_date_input"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:paddingTop="10dp"
+
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:background="@drawable/bg_input"
         android:paddingBottom="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -77,19 +92,34 @@
             android:singleLine="true"
             android:background="@null"
             android:paddingLeft="10dp"
+            android:textColor="@color/black"
             android:fontFamily="@font/sf_medium"
             android:textSize="14sp"
             android:hint="Start date" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_light"
+        android:textSize="10sp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="30dp"
+        android:id="@+id/tv_alert_start_date"
+        android:visibility="invisible"
+        android:text="Please enter your phone number"
+        android:textColor="@color/coral">
+
+    </TextView>
+
     <com.google.android.material.textfield.TextInputLayout
 
         android:layout_centerInParent="true"
         android:id="@+id/end_date_input"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:paddingTop="10dp"
+
         android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -103,6 +133,7 @@
             android:singleLine="true"
             android:layout_height="match_parent"
             android:background="@null"
+            android:textColor="@color/black"
             android:paddingLeft="10dp"
             android:fontFamily="@font/sf_medium"
             android:textSize="14sp"
@@ -110,18 +141,30 @@
 
             android:hint="End date" />
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_light"
+        android:textSize="10sp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="30dp"
+        android:id="@+id/tv_alert_end_date"
+        android:visibility="invisible"
+        android:text="Please enter your phone number"
+        android:textColor="@color/coral">
 
+    </TextView>
     <com.google.android.material.textfield.TextInputLayout
 
 
         android:id="@+id/name_type_input"
-        android:paddingTop="10dp"
+
         android:layout_width="match_parent"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:layout_height="52dp"
         android:background="@drawable/bg_input"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
 
         >
 
@@ -142,20 +185,30 @@
             android:hint="Event type" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_light"
+        android:textSize="10sp"
+        android:layout_marginEnd="20dp"
 
+        android:id="@+id/tv_alert_type"
+        android:layout_marginStart="30dp"
+        android:text="Please enter your phone number"
+        android:textColor="@color/coral">
+
+    </TextView>
     <com.google.android.material.textfield.TextInputLayout
 
         android:layout_centerInParent="true"
         android:id="@+id/name_phone_input1"
-
-        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:layout_height="52dp"
         android:background="@drawable/bg_input"
 
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -174,26 +227,37 @@
             android:hint="Event category" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_light"
+        android:textSize="10sp"
+        android:layout_marginEnd="20dp"
 
+        android:id="@+id/tv_alert_category"
+        android:layout_marginStart="30dp"
+        android:text="Please enter your phone number"
+        android:textColor="@color/coral">
+
+    </TextView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:layout_marginTop="5dp"
         android:layout_height="wrap_content">
 
 
     <com.google.android.material.textfield.TextInputLayout
 
-        android:paddingTop="10dp"
         android:layout_height="52dp"
         android:background="@drawable/bg_input"
         android:layout_weight="1"
         android:id="@+id/chose_country_input"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:paddingBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_marginTop="16dp">
+      >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_country"
@@ -203,10 +267,10 @@
             android:fontFamily="@font/sf_medium"
             android:paddingEnd="20dp"
             android:textColor="@color/black"
-
+            android:paddingBottom="20dp"
             android:drawableEnd="@drawable/ic_arrow_rigth"
             android:textSize="14sp"
-            android:layout_height="match_parent"
+            android:layout_height="52dp"
             android:hint="Country"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -219,10 +283,6 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
 
-
-            android:layout_marginTop="16dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:background="@drawable/bg_input"
@@ -231,9 +291,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_city"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:background="@null"
                 android:paddingLeft="10dp"
+                android:paddingBottom="20dp"
                 android:fontFamily="@font/sf_medium"
                 android:textColor="@color/black"
                 android:drawableEnd="@drawable/ic_arrow_rigth"
@@ -243,17 +304,31 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_light"
+        android:textSize="10sp"
+        android:layout_marginEnd="20dp"
+
+        android:id="@+id/tv_alert_location"
+        android:layout_marginStart="30dp"
+        android:text="Please enter your phone number"
+        android:textColor="@color/coral">
+
+    </TextView>
+
     <com.google.android.material.textfield.TextInputLayout
 
         android:layout_centerInParent="true"
         android:id="@+id/address_input"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:singleLine="true"
-        android:paddingTop="10dp"
+
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginEnd="20dp"
-        android:paddingBottom="10dp"
+
         android:layout_marginStart="20dp"
         android:background="@drawable/bg_input"
         >
@@ -261,23 +336,37 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_address"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="52dp"
 
             android:background="@null"
             android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+
+            android:paddingBottom="20dp"
+            android:textColor="@color/black"
             android:fontFamily="@font/sf_medium"
             android:textSize="14sp"
             android:hint="Address" />
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_light"
+        android:textSize="10sp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="30dp"
+        android:id="@+id/tv_alert_address"
+        android:visibility="invisible"
+        android:text="Please enter your phone number"
+        android:textColor="@color/coral">
 
+    </TextView>
 
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Сontinue"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:textColor="#3AA1FF"
         android:textAllCaps="false"
         android:fontFamily="@font/sf_medium"

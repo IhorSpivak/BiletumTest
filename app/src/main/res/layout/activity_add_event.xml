@@ -11,7 +11,7 @@
        android:layout_width="match_parent"
        android:id="@+id/rl_topbar"
 
-       android:background="@color/white"
+       android:background="#F2F2F2"
        android:layout_height="wrap_content">
 
        <RelativeLayout
@@ -36,13 +36,14 @@
 
        </RelativeLayout>
 
-
        <com.kofigyan.stateprogressbar.StateProgressBar
-           android:layout_width="wrap_content"
+           android:layout_width="match_parent"
            android:layout_height="50dp"
            app:spb_currentStateNumber="one"
            app:spb_maxStateNumber="four"
            android:id="@+id/step_bar"
+
+           app:spb_stateSize="12dp"
            app:spb_stateTextSize="12sp"
 
            app:spb_stateBackgroundColor="#BDBDBD"
@@ -50,7 +51,7 @@
            app:spb_stateNumberBackgroundColor="#808080"
            app:spb_stateNumberForegroundColor="#eeeeee"
            app:spb_currentStateDescriptionColor="#53F8FF"
-           android:layout_below="@+id/tv_title"
+           android:layout_below="@+id/app_bar"
            android:layout_marginTop="20dp"
            app:spb_stateDescriptionColor="#BDBDBD"
            app:spb_animateToCurrentProgressState="true"
@@ -61,7 +62,7 @@
            android:layout_centerHorizontal="true"
            android:layout_height="wrap_content"
            android:id="@+id/tv_title"
-           android:fontFamily="@font/sf_medium"
+           android:fontFamily="@font/sf_heavy"
            android:textSize="17sp"
 
            android:textColor="@color/black"
@@ -78,10 +79,10 @@
            android:id="@+id/tv_title_steps"
            android:textColor="@color/black"
            android:layout_below="@+id/step_bar"
-           android:layout_marginTop="20dp"
+           android:layout_marginTop="40dp"
            android:textSize="17sp"
-           android:fontFamily="@font/sf_semibold"
-           android:text="Create Event">
+           android:fontFamily="@font/sf_bold"
+           android:text="General Information">
 
        </TextView>
 </RelativeLayout>

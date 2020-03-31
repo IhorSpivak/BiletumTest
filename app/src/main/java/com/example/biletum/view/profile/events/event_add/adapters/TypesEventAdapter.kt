@@ -1,31 +1,32 @@
-package com.example.biletum.view.profile.events.event_add
+package com.example.biletum.view.profile.events.event_add.adapters
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.biletum.application.AutoUpdatableAdapter
 import com.example.biletum.application.inflate
-import com.example.biletum.data.network.model.models.CategoryItem
+import com.example.biletum.data.network.model.models.EventType
 import kotlinx.android.synthetic.main.category_item.view.*
 import kotlinx.android.synthetic.main.type_item.view.rl_root
 import kotlinx.android.synthetic.main.type_item.view.tv_location
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
-class CategoryEventAdapter @Inject constructor(): RecyclerView.Adapter<CategoryEventAdapter.MyViewHolder>(),
+
+class TypesEventAdapter @Inject constructor(): RecyclerView.Adapter<TypesEventAdapter.MyViewHolder>(),
     AutoUpdatableAdapter {
 
-    var onItemClick: ((CategoryItem) -> Unit)? = null
-    var typesList: MutableList<CategoryItem> = arrayListOf()
+    var onItemClick: ((EventType) -> Unit)? = null
+    var typesList: MutableList<EventType> = arrayListOf()
 
 
-    var collection: List<CategoryItem> by Delegates.observable(emptyList()) { _, oldValue, newValue ->
+    var collection: List<EventType> by Delegates.observable(emptyList()) { _, oldValue, newValue ->
 
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder =
-        MyViewHolder(parent.inflate(com.example.biletum.R.layout.category_item))
+        MyViewHolder(parent.inflate(com.example.biletum.R.layout.grid_layout))
 
     override fun getItemCount(): Int = collection.size
 
@@ -39,15 +40,14 @@ class CategoryEventAdapter @Inject constructor(): RecyclerView.Adapter<CategoryE
         notifyItemRemoved(position)
     }
 
-    fun updateList(list: List<CategoryItem>) {
+    fun updateList(list: List<EventType>) {
         collection = list
         notifyDataSetChanged()
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bin(item: CategoryItem) {
-
+        fun bin(item: EventType) {
             itemView.cb.isChecked = item.isCheked
             itemView.tv_location.text = item.name
 
@@ -60,3 +60,4 @@ class CategoryEventAdapter @Inject constructor(): RecyclerView.Adapter<CategoryE
 
     }
 }
+

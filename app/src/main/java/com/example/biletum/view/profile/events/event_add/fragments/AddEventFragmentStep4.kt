@@ -1,4 +1,4 @@
-package com.example.biletum.view.profile.events.event_add
+package com.example.biletum.view.profile.events.event_add.fragments
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -12,8 +12,6 @@ import com.example.biletum.helper.USER_KEY
 import com.example.biletum.view.profile.BaseFragment
 import com.example.biletum.view_models.EventShareViewModel
 import com.example.biletum.view_models.EventsViewModel
-import kotlinx.android.synthetic.main.activity_add_event.*
-import kotlinx.android.synthetic.main.fragment_add_event1.*
 import kotlinx.android.synthetic.main.fragment_add_event4.*
 import javax.inject.Inject
 
@@ -37,7 +35,8 @@ class AddEventFragmentStep4: BaseFragment(R.layout.fragment_add_event4) {
     companion object {
         fun newInstance(): AddEventFragmentStep4 {
 
-            val f = AddEventFragmentStep4()
+            val f =
+                AddEventFragmentStep4()
 
             val bdl = Bundle(1)
 

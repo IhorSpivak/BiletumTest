@@ -1,4 +1,4 @@
-package com.example.biletum.view.profile.events.event_add
+package com.example.biletum.view.profile.events.event_add.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -10,7 +10,8 @@ class AddEventFragmentStep3: BaseFragment(R.layout.fragment_add_event3) {
     companion object {
         fun newInstance(): AddEventFragmentStep3 {
 
-            val f = AddEventFragmentStep3()
+            val f =
+                AddEventFragmentStep3()
 
             val bdl = Bundle(1)
 

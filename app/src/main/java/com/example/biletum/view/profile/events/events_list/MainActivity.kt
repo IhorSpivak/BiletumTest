@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.example.biletum.R
 import com.example.biletum.view.profile.activity.BaseActivity
-import com.example.biletum.view.profile.events.event_add.AddEventActivity
+import com.example.biletum.view.profile.events.event_add.activity.AddEventActivity
 import com.example.biletum.view.profile.events.filter.EventsFilterActivity
 import com.example.biletum.view.profile.profile.ProfileActivity
 import com.google.android.gms.tasks.OnCompleteListener

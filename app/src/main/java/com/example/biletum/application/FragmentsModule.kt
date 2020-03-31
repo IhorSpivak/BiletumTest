@@ -1,10 +1,10 @@
 package com.example.biletum.application
 
 
-import com.example.biletum.view.profile.events.event_add.AddEventFragmentStep1
-import com.example.biletum.view.profile.events.event_add.AddEventFragmentStep2
-import com.example.biletum.view.profile.events.event_add.AddEventFragmentStep3
-import com.example.biletum.view.profile.events.event_add.AddEventFragmentStep4
+import com.example.biletum.view.profile.events.event_add.fragments.AddEventFragmentStep1
+import com.example.biletum.view.profile.events.event_add.fragments.AddEventFragmentStep2
+import com.example.biletum.view.profile.events.event_add.fragments.AddEventFragmentStep3
+import com.example.biletum.view.profile.events.event_add.fragments.AddEventFragmentStep4
 import com.example.biletum.view.profile.events.events_list.EventsFragment
 import com.example.biletum.view.profile.events.events_list.MyEventsFragment
 import com.example.biletum.view.profile.login.LoginFragment

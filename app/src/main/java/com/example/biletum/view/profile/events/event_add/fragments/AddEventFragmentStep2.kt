@@ -1,13 +1,10 @@
-package com.example.biletum.view.profile.events.event_add
+package com.example.biletum.view.profile.events.event_add.fragments
 
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
-import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
 import android.provider.MediaStore
 import android.view.View
 
@@ -15,14 +12,12 @@ import com.example.biletum.view.profile.BaseFragment
 import com.example.biletum.view_models.EventsViewModel
 
 import kotlinx.android.synthetic.main.fragment_add_event2.*
-import java.util.*
 import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
 import androidx.core.app.ActivityCompat
 import android.content.SharedPreferences
-import android.util.Base64
 import com.example.biletum.helper.USER_KEY
-import okhttp3.MediaType
+import com.example.biletum.view.profile.events.event_add.activity.AddEventActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -45,7 +40,8 @@ class AddEventFragmentStep2: BaseFragment(com.example.biletum.R.layout.fragment_
     companion object {
         fun newInstance(): AddEventFragmentStep2 {
 
-            val f = AddEventFragmentStep2()
+            val f =
+                AddEventFragmentStep2()
 
             val bdl = Bundle(1)
 

@@ -1,45 +1,36 @@
-package com.example.biletum.view.profile.login
+package com.example.biletum.view.profile.events.event_add.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import kotlinx.android.synthetic.main.activity_list.*
-
-import javax.inject.Inject
-
-
-import android.app.Activity
-import android.content.Context
-import android.view.inputmethod.InputMethodManager
 import com.example.biletum.data.network.model.models.ItemCountry
 import com.example.biletum.helper.USER_KEY
 import com.example.biletum.view.profile.activity.BaseActivity
 import com.example.biletum.view.profile.events.event_add.adapters.CountryAdapter
 import com.example.biletum.view_models.LocationViewModel
+import kotlinx.android.synthetic.main.activity_list.*
+import javax.inject.Inject
 
+class ChoseCountryActivity : BaseActivity() {
+    private lateinit var locationViewModel: LocationViewModel
 
-class CountryListActivity : BaseActivity() {
-
-
-
-    var countryes : List<ItemCountry> = listOf()
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
     @Inject
     lateinit var countryAdapter: CountryAdapter
 
+    var countryes : List<ItemCountry> = listOf()
 
-    private lateinit var locationViewModel: LocationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
 
         setContentView(com.example.biletum.R.layout.activity_list)
-
         locationViewModel = getViewModel(LocationViewModel::class.java)
 
 
@@ -56,8 +47,9 @@ class CountryListActivity : BaseActivity() {
             }
         })
 
+
         btn_back.setOnClickListener {
-         onBackPressed()
+            onBackPressed()
 
         }
 
@@ -76,6 +68,7 @@ class CountryListActivity : BaseActivity() {
         })
     }
 
+
     private fun handleEmptyList() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -89,22 +82,25 @@ class CountryListActivity : BaseActivity() {
         }
     }
 
+
+
     fun filter(text: String) {
         val temp = ArrayList<ItemCountry>()
         for (d in countryes) {
+            //or use .equal(text) with you want equal match
+            //use .toLowerCase() for better matches
             if (d.name.toLowerCase().contains(text)) {
                 temp.add(d)
             }
         }
+
         countryAdapter.updateList(temp)
     }
 
     private fun onClickCountry(item: ItemCountry) {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-        imm!!.hideSoftInputFromWindow(recycler_view.windowToken, 0)
         val intent = Intent()
-        intent.putExtra("name", item.currency)
-        intent.putExtra("code", "+" + item.phonecode)
+        intent.putExtra("name", item.name)
+        intent.putExtra("id", item.id)
         setResult(Activity.RESULT_OK, intent)
         onBackPressed()
     }

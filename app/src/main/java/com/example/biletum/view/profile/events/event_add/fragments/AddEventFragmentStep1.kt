@@ -1,4 +1,4 @@
-package com.example.biletum.view.profile.events.event_add
+package com.example.biletum.view.profile.events.event_add.fragments
 
 
 import android.content.SharedPreferences
@@ -15,18 +15,24 @@ import android.content.Intent
 import android.os.Handler
 import android.view.Gravity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.biletum.data.network.model.dto.CategoryDataItem
-import com.example.biletum.data.network.model.models.CategoryItem
+import com.example.biletum.data.network.model.models.EventCategory
 import com.example.biletum.data.network.model.models.EventType
 import com.example.biletum.data.network.model.models.EventTypeEvent
 
 import com.example.biletum.helper.DateHelper
 import com.example.biletum.helper.USER_KEY
+import com.example.biletum.view.profile.events.event_add.activity.ChoseCategoryEventActivity
+import com.example.biletum.view.profile.events.event_add.activity.ChoseCityActivity
+import com.example.biletum.view.profile.events.event_add.activity.ChoseCountryActivity
+import com.example.biletum.view.profile.events.event_add.activity.ChoseTypeEventActivity
 import com.example.biletum.view_models.EventShareViewModel
 import com.example.biletum.view_models.LocationViewModel
 import kotlinx.android.synthetic.main.activity_add_event.*
 import kotlinx.android.synthetic.main.fragment_add_event1.*
+import kotlinx.android.synthetic.main.fragment_add_event1.name_text_input
 import java.util.*
 
 
@@ -37,8 +43,10 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
     private lateinit var eventShareViewModel: EventShareViewModel
     private val GALLERY = 5
     private val CAMERA = 6
+    private var ID_CITY = 0
+    private var ID_COUNTY = 0
     var listTypes = listOf<EventType>()
-    var list = listOf<CategoryItem>()
+    var listCategoryes = listOf<EventCategory>()
 
 
     @Inject
@@ -55,7 +63,8 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
     companion object {
         fun newInstance(): AddEventFragmentStep1 {
 
-            val f = AddEventFragmentStep1()
+            val f =
+                AddEventFragmentStep1()
 
             val bdl = Bundle(1)
 
@@ -78,12 +87,10 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
 
         eventShareViewModel= ViewModelProviders.of(activity!!).get(EventShareViewModel::class.java)
 
-
         viewModel.getListTypeEvents.observe(this, androidx.lifecycle.Observer {
             when (it.List.isNotEmpty()) {
                 true -> {
                     handleListTypeSuccess(it.List)
-                    val a : String = ""
                 }
                 false -> {
                     handleEmptyList()
@@ -92,9 +99,9 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
         })
 
         viewModel.getListCategoryEvents.observe(this, androidx.lifecycle.Observer {
-            when (it.list.isNotEmpty()) {
+            when (it.List.isNotEmpty()) {
                 true -> {
-                    handleListCategotyesSuccess(it.list)
+                    handleListCategotyesSuccess(it.List)
                 }
                 false -> {
                     handleEmptyList()
@@ -102,10 +109,23 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             }
         })
 
+        ed_name.onFocusChangeListener = object : View.OnFocusChangeListener {
+            override fun onFocusChange(view: View, hasFocus: Boolean) {
+                if (hasFocus) {
+                    name_text_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.bg_field_create_event_focus)
+                } else {
+                    name_text_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.bg_input)
+                }
+            }
+        }
+
         ed_start_day.onFocusChangeListener = object : View.OnFocusChangeListener {
             override fun onFocusChange(view: View, hasFocus: Boolean) {
                 if (hasFocus) {
                     onStartDateClick()
+                    name_start_date_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.bg_field_create_event_focus)
+                } else {
+                    name_start_date_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.bg_input)
                 }
             }
         }
@@ -113,6 +133,9 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             override fun onFocusChange(view: View, hasFocus: Boolean) {
                 if (hasFocus) {
                     onEndDateClick()
+                    end_date_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.bg_field_create_event_focus)
+                } else{
+                    end_date_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.bg_input)
                 }
             }
         }
@@ -120,8 +143,11 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
         ed_country.onFocusChangeListener = object : View.OnFocusChangeListener {
             override fun onFocusChange(view: View, hasFocus: Boolean) {
                 if (hasFocus) {
-                    val intent = Intent(activity, ChoseLocationActivity::class.java)
+                    chose_country_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.bg_field_create_event_focus)
+                    val intent = Intent(activity, ChoseCountryActivity::class.java)
                     startActivityForResult(intent, 1)
+                } else {
+                    chose_country_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.bg_input)
                 }
             }
         }
@@ -133,6 +159,9 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
                     val typesData = listTypes?.let { EventTypeEvent(it) }
                     intent.putExtra("data", typesData)
                     startActivityForResult(intent, 2)
+                    chose_city_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.bg_field_create_event_focus)
+                } else{
+                    chose_city_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.bg_input)
                 }
             }
         }
@@ -141,7 +170,7 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             override fun onFocusChange(view: View, hasFocus: Boolean) {
                 if (hasFocus) {
                     val intent = Intent(activity, ChoseCategoryEventActivity::class.java)
-                    val categoryData = list?.let { CategoryDataItem(it) }
+                    val categoryData = listCategoryes?.let { CategoryDataItem(it) }
                     intent.putExtra("data", categoryData)
                     startActivityForResult(intent, 3)
                 }
@@ -151,9 +180,14 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
         ed_city.onFocusChangeListener = object : View.OnFocusChangeListener {
             override fun onFocusChange(view: View, hasFocus: Boolean) {
                 if (hasFocus) {
-                    val intent = Intent(activity, ChoseLocationActivity::class.java)
-                    intent.putExtra("Country", "Ukraine")
-                    startActivityForResult(intent, 4)
+                    if(ID_COUNTY == 0){
+
+                    } else {
+                        val intent = Intent(activity, ChoseCityActivity::class.java)
+                        intent.putExtra("id", ID_COUNTY)
+                        startActivityForResult(intent, 4)
+                    }
+
                 }
             }
         }
@@ -165,8 +199,8 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
 
     }
 
-    private fun handleListCategotyesSuccess(list: Any) {
-
+    private fun handleListCategotyesSuccess(list: List<EventCategory>) {
+        listCategoryes = list
     }
 
     private fun handleEmptyList() {
@@ -191,6 +225,7 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             1 -> {
                 if (data != null) {
                     val name = data!!.getStringExtra("name")
+                    ID_COUNTY = data!!.getIntExtra("id",0)
                     ed_country.setText(name)
                     ed_country.clearFocus()
                     Handler().postDelayed({ showSnackBar(data) }, 500)
@@ -204,7 +239,6 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             3 -> {
                 if (data != null) {
                     setCategoties(data)
-
                 }
             }
             4 -> {
@@ -212,7 +246,6 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
                     val name = data!!.getStringExtra("name")
                     ed_city.setText(name)
                     ed_city.clearFocus()
-
                 }
             }
             else -> super.onActivityResult(requestCode, resultCode, data)
@@ -222,7 +255,7 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
     private fun setCategoties(data: Intent) {
         val dataList = data.getParcelableExtra<CategoryDataItem>("data")
         var text: String = ""
-        list = dataList.list
+        listCategoryes = dataList.list
         dataList.list.forEach {
             if(it.isCheked)
                 if(text.isEmpty()){
@@ -247,7 +280,6 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
                 } else {
                     text = text + "," + it.name
                 }
-
         }
         ed_type.setText(text)
         ed_type.clearFocus()
@@ -256,7 +288,7 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
     private fun showSnackBar(data: Intent?) {
         Snackbar.make(
             ed_end_date,
-            Html.fromHtml("<font color=\"#78E5B4\">Изминение сохранено</font>"),
+            Html.fromHtml("<font color=\"#3AA1FF\">Изминение сохранено</font>"),
             Snackbar.LENGTH_LONG
         ).apply {
             val params = CoordinatorLayout.LayoutParams(
@@ -276,7 +308,7 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
 
     fun onEndDateClick() {
         val currentCalendar = Calendar.getInstance()
-        currentCalendar.setTime(Date())
+        currentCalendar.time = Date()
         val datePickerDialog = DatePickerDialog(
             context!!, -1, { view1, year, month, dayOfMonth ->
                 calendar = Calendar.getInstance()
@@ -308,7 +340,7 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
 
     fun onStartDateClick() {
         val currentCalendar = Calendar.getInstance()
-        currentCalendar.setTime(Date())
+        currentCalendar.time = Date()
         val datePickerDialog = DatePickerDialog(
             context!!, -1, { view1, year, month, dayOfMonth ->
                 calendar = Calendar.getInstance()
