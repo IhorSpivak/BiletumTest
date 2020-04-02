@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:id="@+id/root"
+    android:layout_height="104dp">
+
+    <com.joooonho.SelectableRoundedImageView
+
+        android:id="@+id/iv_image_event"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/pictur"
+        android:layout_width="match_parent"
+
+        android:layout_height="104dp"
+        android:scaleType="fitXY"
+
+        app:sriv_left_top_corner_radius="10dip"
+        app:sriv_right_top_corner_radius="10dip"
+        app:sriv_left_bottom_corner_radius="10dip"
+        app:sriv_right_bottom_corner_radius="10dip"
+
+
+        />
+
+</LinearLayout>

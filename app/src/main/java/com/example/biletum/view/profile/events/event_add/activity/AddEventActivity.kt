@@ -21,12 +21,12 @@ class AddEventActivity : BaseActivity() {
     companion object CreateEvent {
         var title  :String = ""
         var descr :String = ""
-        val image :String= ""
+        var image :String= ""
         var date_start :String= ""
         var date_end :String= ""
         val region :String= ""
         val url  :String= ""
-        val photos :String= ""
+        var photos = ArrayList<String>()
         var location :String= ""
         val agenda :String= ""
         val contact :String= ""
@@ -83,12 +83,11 @@ class AddEventActivity : BaseActivity() {
 
     }
 
+
+
     private fun setupViewPager() {
 
-        val adapter =
-            MyFragmentPagerAdapter(
-                getSupportFragmentManager()
-            )
+        val adapter = MyFragmentPagerAdapter(supportFragmentManager)
 
         adapter.addFragment(AddEventFragmentStep1.newInstance())
         adapter.addFragment(AddEventFragmentStep2.newInstance())
@@ -96,7 +95,6 @@ class AddEventActivity : BaseActivity() {
         adapter.addFragment(AddEventFragmentStep4.newInstance())
 
         view_pager!!.adapter = adapter
-
 
     }
 

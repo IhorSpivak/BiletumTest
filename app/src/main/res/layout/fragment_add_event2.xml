@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    >
+<RelativeLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:background="#F2F2F2"
     android:layout_height="match_parent">
 
@@ -20,28 +31,55 @@
            android:fontFamily="@font/sf_medium"
            android:text="+ Add header image"
            android:textSize="14sp"
+           android:id="@+id/tv_add_main"
            android:layout_height="wrap_content">
 
        </TextView>
 
+       <com.agrawalsuneet.dotsloader.loaders.TashieLoader
+           android:layout_width="30dp"
+           android:layout_height="5dp"
+           app:tashieloader_animDelay="100"
+           app:tashieloader_animDur="300"
+           android:id="@+id/pb_main"
+           app:tashieloader_dotsColor="#3AA1FF"
+           app:tashieloader_dotsDist="5dp"
+           android:layout_centerInParent="true"
+           android:visibility="invisible"
+           app:tashieloader_dotsRadius="5dp"
+           android:layout_marginTop="16dp"
+           android:layout_centerHorizontal="true"
 
-       <ImageView
-           android:layout_width="300dp"
-           android:layout_height="300dp"
-           android:layout_gravity="center"
-           android:layout_marginTop="20dp"
-           android:scaleType="fitXY"
+           app:tashieloader_interpolator="@android:anim/accelerate_interpolator"
+           app:tashieloader_noOfDots="6" />
 
-           android:id="@+id/iv"/>
+
+       <com.joooonho.SelectableRoundedImageView
+
+           android:id="@+id/iv_image_event"
+           android:layout_width="match_parent"
+
+           android:layout_height="match_parent"
+           android:scaleType="centerCrop"
+
+           app:sriv_left_top_corner_radius="10dip"
+           app:sriv_right_top_corner_radius="10dip"
+           app:sriv_left_bottom_corner_radius="10dip"
+           app:sriv_right_bottom_corner_radius="10dip"
+
+
+           />
    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
+        android:id="@+id/tv_title_main"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_centerInParent="true"
+
+        android:layout_below="@+id/rl_mail_image"
+
         android:textSize="14sp"
         android:fontFamily="@font/sf_medium"
         android:text="+ Add image from previous event"
@@ -52,8 +90,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:id="@+id/ll_empty"
         android:layout_marginStart="20dp"
+        android:layout_below="@+id/tv_title_main"
         android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
         android:layout_height="104dp">
 
     <LinearLayout
@@ -117,41 +158,68 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:id="@+id/rv_images"
+        android:orientation="horizontal"
+        android:minHeight="104dp"
+        android:layout_below="@+id/tv_title_main"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_height="wrap_content">
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <com.agrawalsuneet.dotsloader.loaders.TashieLoader
+        android:layout_width="30dp"
+        android:layout_height="5dp"
+        app:tashieloader_animDelay="100"
+        app:tashieloader_animDur="300"
+        android:id="@+id/pb_mul_image"
+        app:tashieloader_dotsColor="#3AA1FF"
+        app:tashieloader_dotsDist="5dp"
+        android:visibility="invisible"
+        android:layout_below="@id/rv_images"
+        app:tashieloader_dotsRadius="5dp"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+
+        app:tashieloader_interpolator="@android:anim/accelerate_interpolator"
+        app:tashieloader_noOfDots="6" />
+
 
     <Button
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:textColor="#3AA1FF"
 
         android:textAllCaps="false"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="Continue"
+
         android:fontFamily="@font/sf_medium"
         android:layout_marginBottom="20dp"
         android:textSize="17sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_button_next"
-        android:layout_centerInParent="true"
-        android:id="@+id/btn_add_event"
-        android:layout_below="@+id/name_text_input"/>
+        android:layout_below="@+id/rv_images"
+        android:id="@+id/btn_add_event" />
 
     <TextView
         android:layout_width="match_parent"
         android:gravity="center"
+        android:id="@+id/btn_skip"
+        android:layout_below="@+id/btn_add_event"
         android:fontFamily="@font/sf_medium"
         android:textColor="#3AA1FF"
+        android:layout_marginBottom="20dp"
         android:text="Skip this step"
-        android:layout_height="wrap_content">
-
-    </TextView>
+        android:layout_height="wrap_content"/>
 
 
 
-</LinearLayout>
+
+
+</RelativeLayout>
+</androidx.core.widget.NestedScrollView>

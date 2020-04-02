@@ -63,8 +63,6 @@ class ChoseCategoryEventActivity : BaseActivity() {
     fun filter(text: String) {
         val temp = ArrayList<EventCategory>()
         for (d in dataList!!.list) {
-            //or use .equal(text) with you want equal match
-            //use .toLowerCase() for better matches
             if (d.name.toLowerCase().contains(text)) {
                 temp.add(d)
             }

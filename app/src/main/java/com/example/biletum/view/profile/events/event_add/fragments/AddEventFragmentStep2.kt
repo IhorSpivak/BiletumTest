@@ -16,13 +16,25 @@ import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
 import androidx.core.app.ActivityCompat
 import android.content.SharedPreferences
+import com.example.biletum.data.network.model.models.EventCategory
 import com.example.biletum.helper.USER_KEY
 import com.example.biletum.view.profile.events.event_add.activity.AddEventActivity
+import com.example.biletum.view.profile.events.event_add.adapters.CountryAdapter
+import com.example.biletum.view.profile.events.event_add.adapters.ImageAdapter
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.*
 import javax.inject.Inject
+import androidx.recyclerview.widget.GridLayoutManager
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.icu.lang.UCharacter.GraphemeClusterBreak.V
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_add_event.*
+import android.R
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 
 class AddEventFragmentStep2: BaseFragment(com.example.biletum.R.layout.fragment_add_event2) {
@@ -32,10 +44,19 @@ class AddEventFragmentStep2: BaseFragment(com.example.biletum.R.layout.fragment_
     private val REQUEST_CAMERA = 1;
     private val GALLERY = 5
     private val CAMERARESULT = 6
+    private var FLAG = 0
+    private var urlMain = ""
     var currentApiVersion = Build.VERSION.SDK_INT
     @Inject
     lateinit var sharedPreferences: SharedPreferences
+    var listImages = ArrayList<String>()
 
+
+
+
+
+    @Inject
+    lateinit var imageAdapter: ImageAdapter
 
     companion object {
         fun newInstance(): AddEventFragmentStep2 {
@@ -52,27 +73,103 @@ class AddEventFragmentStep2: BaseFragment(com.example.biletum.R.layout.fragment_
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = getViewModel(EventsViewModel::class.java)
+        viewModel.uploadImageData.observe(this, androidx.lifecycle.Observer {
+            when (it != null) {
+                true -> {
+                    handleUrlImage(it.url)
+                }
+                false -> {
 
+                }
+            }
+        })
+
+        viewModel.uploadMainImageData.observe(this, androidx.lifecycle.Observer {
+            when (it != null) {
+                true -> {
+                    handleUrlMainImage(it.url)
+                }
+                false -> {
+
+                }
+            }
+        })
+
+        if(listImages.isEmpty()){
+            rv_images.visibility = View.INVISIBLE
+            ll_empty.visibility = View.VISIBLE
+
+        } else{
+            rv_images.visibility = View.VISIBLE
+            ll_empty.visibility = View.GONE
+        }
+
+        rv_images?.apply {
+            rv_images.layoutManager = GridLayoutManager(activity!!, 3)
+            imageAdapter.collection = listImages
+            adapter = imageAdapter
+            imageAdapter.onItemClick = { item ->
+                FLAG = 2
+                showPictureDialog()
+            }
+        }
 
         addParametersToEvent()
 
         if(currentApiVersion >=  Build.VERSION_CODES.M)
         {
             if(checkPermission()) {
-
             }
-            else
-            {
+            else {
                 requestPermission()
             }
         }
 
         rl_mail_image.setOnClickListener {
+            FLAG = 1
             showPictureDialog()
+        }
+
+        ll_empty.setOnClickListener {
+            FLAG = 2
+            showPictureDialog()
+
+        }
+
+        btn_skip.setOnClickListener {
+            val view = activity!!.view_pager
+            view.currentItem = view.currentItem + 1
+        }
+
+    }
+
+    private fun handleUrlMainImage(url: String) {
+        iv_image_event.visibility = View.VISIBLE
+        urlMain = url
+        Picasso.get().load(url).into(iv_image_event)
+    }
+
+    private fun handleUrlImage(url: String) {
+        if (listImages.isEmpty()) {
+            listImages.add("https://i.ibb.co/k58FDT6/Group-1.png")
+            listImages.add(url)
+            imageAdapter.updateList(listImages)
+            rv_images.visibility = View.VISIBLE
+            ll_empty.visibility = View.INVISIBLE
+            pb_mul_image.visibility = View.GONE
+        } else {
+            listImages.add(url)
+            imageAdapter.updateList(listImages)
+            rv_images.visibility = View.VISIBLE
+            ll_empty.visibility = View.INVISIBLE
+            pb_mul_image.visibility = View.GONE
         }
 
     }
@@ -83,8 +180,8 @@ class AddEventFragmentStep2: BaseFragment(com.example.biletum.R.layout.fragment_
     }
 
     private fun addParametersToEvent() {
-        AddEventActivity.CreateEvent.descr = "test"
-
+        AddEventActivity.CreateEvent.photos = listImages
+        AddEventActivity.CreateEvent.image = urlMain
     }
 
     private fun requestPermission() {
@@ -98,8 +195,7 @@ class AddEventFragmentStep2: BaseFragment(com.example.biletum.R.layout.fragment_
                     val contentURI = data!!.data
                     try {
                         val bitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, contentURI)
-                        iv!!.setImageBitmap(bitmap)
-                        viewModel.uploadImage(sharedPreferences.getString(USER_KEY, "").toString(), buildImageBodyPart("image", bitmap))
+                        sendImage(bitmap)
                     }
                     catch (e: IOException) {
                         e.printStackTrace()
@@ -109,11 +205,27 @@ class AddEventFragmentStep2: BaseFragment(com.example.biletum.R.layout.fragment_
             6 -> {
                 if (data != null) {
                     val bitmap = data!!.extras!!.get("data") as Bitmap
-                    iv!!.setImageBitmap(bitmap)
+                    sendImage(bitmap)
                 }
             }
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
+    }
+
+    private fun sendImage(bitmap: Bitmap?) {
+        when(FLAG){
+            1 ->{
+                iv_image_event.visibility = View.INVISIBLE
+                pb_main.visibility = View.VISIBLE
+                tv_add_main.visibility = View.INVISIBLE
+                viewModel.uploadMainImage(sharedPreferences.getString(USER_KEY, "").toString(), buildImageBodyPart("image", bitmap!!))
+            }
+            2 ->{
+                pb_mul_image.visibility = View.VISIBLE
+                viewModel.uploadImage(sharedPreferences.getString(USER_KEY, "").toString(), buildImageBodyPart("image", bitmap!!))
+            }
+        }
+
     }
 
     private fun showPictureDialog() {
@@ -129,8 +241,6 @@ class AddEventFragmentStep2: BaseFragment(com.example.biletum.R.layout.fragment_
         }
         pictureDialog.show()
     }
-
-
 
     fun choosePhotoFromGallary() {
         val galleryIntent = Intent(Intent.ACTION_PICK,
@@ -149,16 +259,12 @@ class AddEventFragmentStep2: BaseFragment(com.example.biletum.R.layout.fragment_
         return MultipartBody.Part.createFormData(fileName,     leftImageFile.name, reqFile)
     }
     private fun convertBitmapToFile(fileName: String, bitmap: Bitmap): File {
-        //create a file to write bitmap data
         val file = File(context!!.cacheDir, fileName)
         file.createNewFile()
-
-        //Convert bitmap to byte array
         val bos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50 /*ignored for PNG*/, bos)
         val bitMapData = bos.toByteArray()
 
-        //write the bytes in file
         var fos: FileOutputStream? = null
         try {
             fos = FileOutputStream(file)
@@ -174,6 +280,5 @@ class AddEventFragmentStep2: BaseFragment(com.example.biletum.R.layout.fragment_
         }
         return file
     }
-
 
 }

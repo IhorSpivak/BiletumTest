@@ -1,31 +1,33 @@
-package com.example.biletum.view.profile.login
+package com.example.biletum.view.profile.events.event_add.adapters
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.biletum.application.AutoUpdatableAdapter
 import com.example.biletum.application.inflate
-import com.example.biletum.data.network.model.models.CountryItem
+import com.example.biletum.data.network.model.models.ItemCountry
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.big_event_item.view.iv_image_event
 import kotlinx.android.synthetic.main.country_list_item.view.*
+import kotlinx.android.synthetic.main.image_item.view.*
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
+class ImageAdapter @Inject constructor(): RecyclerView.Adapter<ImageAdapter.MyNotificationViewHolder>(),
+    AutoUpdatableAdapter {
 
-class CountryAdapter @Inject constructor(): RecyclerView.Adapter<CountryAdapter.MyNotificationViewHolder>(), AutoUpdatableAdapter {
-
-    var onItemClick: ((CountryItem) -> Unit)? = null
-    var searchableList: MutableList<CountryItem> = arrayListOf()
+    var onItemClick: ((String) -> Unit)? = null
+    var searchableList: MutableList<String> = arrayListOf()
 
 
 
-    var collection: List<CountryItem> by Delegates.observable(emptyList()){ _, oldValue, newValue ->
+    var collection: List<String> by Delegates.observable(emptyList()){ _, oldValue, newValue ->
 
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyNotificationViewHolder =
-        MyNotificationViewHolder(parent.inflate(com.example.biletum.R.layout.country_list_item))
+        MyNotificationViewHolder(parent.inflate(com.example.biletum.R.layout.image_item))
 
     override fun getItemCount(): Int = collection.size
 
@@ -39,22 +41,21 @@ class CountryAdapter @Inject constructor(): RecyclerView.Adapter<CountryAdapter.
         notifyItemRemoved(position)
     }
 
-    fun updateList(list: List<CountryItem>) {
+    fun updateList(list: List<String>) {
         collection = list
         notifyDataSetChanged()
     }
 
     inner class MyNotificationViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
-        fun bin(item: CountryItem) {
-            itemView.tv_location.text = item.name
-            itemView.tv_code.text = item.code
+        fun bin(item: String) {
+            Picasso.get().load(item).into(itemView.iv_image_event)
 
-            itemView.rl_root.setOnClickListener {
+            itemView.root.setOnClickListener {
                 onItemClick?.invoke(collection[adapterPosition])
+            }
             }
         }
 
-    }
 
 }

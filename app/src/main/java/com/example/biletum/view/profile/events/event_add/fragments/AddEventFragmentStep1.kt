@@ -1,6 +1,7 @@
 package com.example.biletum.view.profile.events.event_add.fragments
 
 
+import android.R
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Html
@@ -13,6 +14,8 @@ import android.app.TimePickerDialog
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Gravity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
@@ -33,7 +36,12 @@ import com.example.biletum.view_models.LocationViewModel
 import kotlinx.android.synthetic.main.activity_add_event.*
 import kotlinx.android.synthetic.main.fragment_add_event1.*
 import kotlinx.android.synthetic.main.fragment_add_event1.name_text_input
+import kotlinx.android.synthetic.main.fragment_login.*
 import java.util.*
+import androidx.viewpager.widget.ViewPager
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 
 class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_add_event1) {
@@ -45,6 +53,7 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
     private val CAMERA = 6
     private var ID_CITY = 0
     private var ID_COUNTY = 0
+    private var FLAG = false
     var listTypes = listOf<EventType>()
     var listCategoryes = listOf<EventCategory>()
 
@@ -73,6 +82,14 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             return f
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ed_city.clearFocus()
+        ed_country.clearFocus()
+        ed_type.clearFocus()
+        ed_event_category.clearFocus()
     }
 
 
@@ -181,7 +198,11 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             override fun onFocusChange(view: View, hasFocus: Boolean) {
                 if (hasFocus) {
                     if(ID_COUNTY == 0){
-
+                        ed_city.clearFocus()
+                        tv_alert_location.visibility = View.VISIBLE
+                        tv_alert_location.text = "This field is required"
+                        chose_country_input.error = "This field is required"
+                        chose_country_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.alert_bg_input)
                     } else {
                         val intent = Intent(activity, ChoseCityActivity::class.java)
                         intent.putExtra("id", ID_COUNTY)
@@ -192,10 +213,167 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             }
         }
 
+        ed_name.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.isNotEmpty()) {
+                    name_text_input.setBackgroundResource(com.example.biletum.R.drawable.bg_field_create_event_focus)
+                    tv_alert_name.visibility = View.INVISIBLE
+                    name_text_input.isErrorEnabled = false
+
+                }
+            }
+        })
+
+        ed_type.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.isNotEmpty()) {
+                    name_type_input.setBackgroundResource(com.example.biletum.R.drawable.bg_field_create_event_focus)
+                    tv_alert_type.visibility = View.INVISIBLE
+                    name_type_input.isErrorEnabled = false
+
+                }
+            }
+        })
+
+        ed_event_category.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.isNotEmpty()) {
+                    name_category_input.setBackgroundResource(com.example.biletum.R.drawable.bg_field_create_event_focus)
+                    tv_alert_category.visibility = View.INVISIBLE
+                    name_category_input.isErrorEnabled = false
+                }
+            }
+        })
+
+        ed_country.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.isNotEmpty()) {
+                    chose_country_input.setBackgroundResource(com.example.biletum.R.drawable.bg_field_create_event_focus)
+                    tv_alert_location.visibility = View.INVISIBLE
+                    chose_country_input.isErrorEnabled = false
+                }
+            }
+        })
+
+        val view = activity!!.view_pager
+        view.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                if(!FLAG){
+
+                    view.setCurrentItem(0, true)
+                }
+            }
+
+            override fun onPageSelected(position: Int) {
+
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+
+        })
+
         btn_go_to_step_2.setOnClickListener {
-            addParametersToEvent()
-            activity!!.view_pager.setCurrentItem(1, true)
+            submitForm()
         }
+
+    }
+
+    private fun submitForm() {
+
+        if (!validateFieldName()) {
+            return
+        }
+        if (!validateFieldType()) {
+            return
+        }
+        if (!validateFieldCategory()) {
+            return
+        }
+        if (!validateFieldCountry()) {
+            return
+        }
+        goToSecondStep()
+    }
+
+    private fun goToSecondStep() {
+        FLAG = true
+        addParametersToEvent()
+        activity!!.view_pager.setCurrentItem(1, true)
+    }
+
+    private fun validateFieldCountry(): Boolean {
+        if (ed_country.text.toString().isEmpty()) {
+            tv_alert_location.visibility = View.VISIBLE
+            tv_alert_location.text = "This field is required"
+            chose_country_input.error = "This field is required"
+            chose_country_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.alert_bg_input)
+            nestedScrollView.scrollTo(0,0)
+            return false
+        } else {
+            chose_country_input.isErrorEnabled = false
+        }
+        return true
+    }
+
+    private fun validateFieldCategory(): Boolean {
+        if (ed_event_category.text.toString().isEmpty()) {
+            tv_alert_category.visibility = View.VISIBLE
+            tv_alert_category.text = "Choose your event category"
+            name_category_input.error = "Choose your event category"
+            name_category_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.alert_bg_input)
+            nestedScrollView.scrollTo(0,0)
+            return false
+        } else {
+            name_category_input.isErrorEnabled = false
+        }
+        return true
+    }
+
+    private fun validateFieldType(): Boolean {
+        if (ed_type.text.toString().isEmpty()) {
+            tv_alert_type.visibility = View.VISIBLE
+            tv_alert_type.text = "Choose your event type"
+            name_type_input.error = "Choose your event type"
+            name_type_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.alert_bg_input)
+            nestedScrollView.scrollTo(0,0)
+            return false
+        } else {
+            name_text_input.isErrorEnabled = false
+        }
+        return true
+    }
+
+    private fun validateFieldName(): Boolean {
+        if (ed_name.text.toString().isEmpty()) {
+            tv_alert_name.visibility = View.VISIBLE
+            tv_alert_name.text = "Type your event name"
+            name_text_input.error = "Type your event name"
+            name_text_input.background = ContextCompat.getDrawable(context!!, com.example.biletum.R.drawable.alert_bg_input)
+            nestedScrollView.scrollTo(0,0)
+            return false
+        } else {
+            name_text_input.isErrorEnabled = false
+        }
+        return true
 
     }
 
@@ -335,6 +513,7 @@ class AddEventFragmentStep1: BaseFragment(com.example.biletum.R.layout.fragment_
             currentCalendar.get(Calendar.YEAR), currentCalendar.get(Calendar.MONTH),
             currentCalendar.get(Calendar.DAY_OF_MONTH)
         )
+        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
         datePickerDialog.show()
     }
 

@@ -43,6 +43,10 @@ class EventsViewModel @Inject constructor(private val addEventInteractor: AddEve
     val uploadImageData: LiveData<ImageUploadResponse>
         get() = _uploadImageData
 
+    private val _uploadMainImageData = MutableLiveData<ImageUploadResponse>()
+    val uploadMainImageData: LiveData<ImageUploadResponse>
+        get() = _uploadMainImageData
+
 
     fun addEvent(token: String, eventAddRequest: AddEventRequest){
         uiScope.launch {
@@ -79,6 +83,14 @@ class EventsViewModel @Inject constructor(private val addEventInteractor: AddEve
             _uploadImageData.value = uploadImageData
         }
     }
+
+    fun uploadMainImage(token: String, image: MultipartBody.Part){
+        uiScope.launch {
+            val uploadImageData = uploadImageInteractor.invoke(UploadImageInteractor.Params(token, image))
+            _uploadMainImageData.value = uploadImageData
+        }
+    }
+
 
 
 
